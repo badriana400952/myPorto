@@ -9,16 +9,16 @@ import {
   Link,
   Button,
 } from "@heroui/react";
-import { Footer } from "./components/footer";
-import { ContactSection } from "./components/contact-section";
-import { TestimonialsSection } from "./components/testimonials-section";
-import { SkillsSection } from "./components/skills-section";
-import { ProjectsSection } from "./components/projects-section";
-import { AboutSection } from "./components/about-section";
-import { HeroSection } from "./components/hero-section";
-import { ThemeSwitcher } from "./components/theme-switcher";
+import { Footer } from "../components/footer";
+import { ContactSection } from "../components/contact-section";
+import { TestimonialsSection } from "../components/testimonials-section";
+import { SkillsSection } from "../components/skills-section";
+import { ProjectsSection } from "../components/projects-section";
+import { AboutSection } from "../components/about-section";
+import { HeroSection } from "../components/hero-section";
+import { ThemeSwitcher } from "../components/theme-switcher";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { ExperienceGallery } from "./components/experience-gallery";
+import { ExperienceGallery } from "../components/experience-gallery";
 
 export default function Home() {
   return (
