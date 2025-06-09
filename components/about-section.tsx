@@ -60,8 +60,8 @@ export const AboutSection: React.FC = () => {
                   <div className="space-y-4">
                     {[
                       {
-                        role: "Web Developer",
-                        company: "Digital Solutions Agency",
+                        role: "Frontend Developer",
+                        company: "Jaring Sinergi Mandiri",
                         period: "June 2025 - Present",
                       },
                       {
