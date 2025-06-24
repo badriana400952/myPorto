@@ -20,6 +20,7 @@ import { ThemeSwitcher } from "../components/theme-switcher";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { ExperienceGallery } from "../components/experience-gallery";
 import { NpmPackageCard } from "@/components/package";
+import { DraggableCard } from "@/components/draggable";
 
 export default function Home() {
   const packages = [
@@ -132,6 +133,7 @@ export default function Home() {
         <AboutSection />
         <ProjectsSection />
         <SkillsSection />
+
         <div className="">
           <h1 className="text-4xl font-bold mb-8 text-center">
             📦 My NPM Packages

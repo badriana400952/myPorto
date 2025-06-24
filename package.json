@@ -12,10 +12,14 @@
     "@heroui/react": "^2.7.9",
     "@heroui/theme": "^2.4.16",
     "@iconify/react": "^6.0.0",
+    "@tabler/icons-react": "^3.34.0",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.16.0",
+    "motion": "^12.19.1",
     "next": "15.3.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
