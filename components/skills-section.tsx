@@ -1,7 +1,5 @@
-import { Card, CardBody } from "@heroui/react";
-import { Icon } from "@iconify/react";
-import { motion } from "framer-motion";
 import React from "react";
+import { DraggableCard } from "./draggable";
 
 interface Skill {
   name: string;
@@ -83,9 +81,9 @@ export const SkillsSection: React.FC = () => {
           career. Here`s an overview of my technical expertise.
         </p>
       </div>
-
+      <DraggableCard />
       {/* New glowing tech grid inspired by mastra.ai */}
-      <div className="mb-20">
+      {/* <div className="mb-20">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {technologies.map((tech, index) => (
             <motion.div
@@ -112,10 +110,10 @@ export const SkillsSection: React.FC = () => {
             </motion.div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* Keep the existing skills with progress bars */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {/* <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {skillCategories.map((category, index) => (
           <Card key={index} className="border border-divider">
             <CardBody className="p-6">
@@ -135,7 +133,7 @@ export const SkillsSection: React.FC = () => {
             </CardBody>
           </Card>
         ))}
-      </div>
+      </div> */}
 
       {/* Remove or keep the existing icon grid based on preference */}
       {/* <div className="mt-16 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
