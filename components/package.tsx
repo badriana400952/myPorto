@@ -1,4 +1,5 @@
 import { Badge, Button } from "@heroui/react";
+import Image from "next/image";
 
 type Props = {
   name: string;
@@ -25,7 +26,7 @@ export const NpmPackageCard = ({
       className="p-6 rounded-2xl shadow-md hover:shadow-lg transition-all"
     >
       <div>
-        <img
+        <Image
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/810px-Npm-logo.svg.png"
           alt="sss"
         />

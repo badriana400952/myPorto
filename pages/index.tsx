@@ -20,7 +20,6 @@ import { ThemeSwitcher } from "../components/theme-switcher";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { ExperienceGallery } from "../components/experience-gallery";
 import { NpmPackageCard } from "@/components/package";
-import { DraggableCard } from "@/components/draggable";
 
 export default function Home() {
   const packages = [
