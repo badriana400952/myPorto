@@ -25,10 +25,12 @@ export const NpmPackageCard = ({
       id="package"
       className="p-6 rounded-2xl shadow-md hover:shadow-lg transition-all"
     >
-      <div>
+      <div className="flex justify-center">
         <Image
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/810px-Npm-logo.svg.png"
-          alt="sss"
+          src="/logos.png" // perhatikan ada slash "/"
+          alt="Logo"
+          width={200}
+          height={100}
         />
       </div>
       <div className="space-y-4">
