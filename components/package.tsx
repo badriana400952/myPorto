@@ -23,23 +23,24 @@ export const NpmPackageCard = ({
   return (
     <section
       id="package"
-      className="p-6 rounded-2xl shadow-md hover:shadow-lg transition-all"
+      className="p-4 sm:p-6 rounded-2xl shadow-md hover:shadow-lg transition-all bg-white"
     >
       <div className="flex justify-center">
         <Image
-          src="/logos.png" // perhatikan ada slash "/"
+          src="/logos.png"
           alt="Logo"
           width={200}
           height={100}
+          className="object-contain"
         />
       </div>
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h3 className="text-xl font-bold">{name}</h3>
+      <div className="space-y-4 mt-4">
+        <div className="flex items-center justify-between flex-wrap gap-2">
+          <h3 className="text-lg sm:text-xl font-bold">{name}</h3>
           <Badge variant="faded">v{version}</Badge>
         </div>
         <p className="text-muted-foreground text-sm">{description}</p>
-        <div className="flex items-center gap-6 text-sm text-muted-foreground">
+        <div className="flex items-center flex-wrap gap-4 text-sm text-muted-foreground">
           <span className="flex items-center gap-1">
             <span className="w-4 h-4" /> {weeklyDownloads.toLocaleString()}{" "}
             downloads
@@ -48,7 +49,7 @@ export const NpmPackageCard = ({
             <p className="w-4 h-4" /> {stars} stars
           </span>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <Button variant="light">
             <a href={npmUrl} target="_blank" rel="noreferrer">
               View on NPM

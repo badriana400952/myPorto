@@ -1,25 +1,24 @@
 "use client";
-import React from "react";
-import Head from "next/head";
+import { NpmPackageCard } from "@/components/package";
 import {
+  Button,
+  Link,
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Link,
-  Button,
 } from "@heroui/react";
-import { Footer } from "../components/footer";
-import { ContactSection } from "../components/contact-section";
-import { TestimonialsSection } from "../components/testimonials-section";
-import { SkillsSection } from "../components/skills-section";
-import { ProjectsSection } from "../components/projects-section";
-import { AboutSection } from "../components/about-section";
-import { HeroSection } from "../components/hero-section";
-import { ThemeSwitcher } from "../components/theme-switcher";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import Head from "next/head";
+import { AboutSection } from "../components/about-section";
+import { ContactSection } from "../components/contact-section";
 import { ExperienceGallery } from "../components/experience-gallery";
-import { NpmPackageCard } from "@/components/package";
+import { Footer } from "../components/footer";
+import { HeroSection } from "../components/hero-section";
+import { ProjectsSection } from "../components/projects-section";
+import { SkillsSection } from "../components/skills-section";
+import { TestimonialsSection } from "../components/testimonials-section";
+import { ThemeSwitcher } from "../components/theme-switcher";
 
 export default function Home() {
   const packages = [
@@ -132,21 +131,38 @@ export default function Home() {
         <AboutSection />
         <ProjectsSection />
         <SkillsSection />
-
+        {/* <GlowingEffectPage /> */}
         <div className="">
           <h1 className="text-4xl font-bold mb-8 text-center">
             📦 My NPM Packages
           </h1>
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {packages.map((pkg) => (
               <NpmPackageCard key={pkg.name} {...pkg} />
             ))}
           </div>
         </div>
+
         <TestimonialsSection />
         <ExperienceGallery />
         {/* <OfficeExperienceCarousel /> */}
         <ContactSection />
+
+        {/* <div className="h-[50rem] w-full flex items-center justify-center ">
+          <PinContainerView
+            title="My Work"
+            href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.4546476496125!2d106.8093531!3d-6.1771726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f680ab7fc64b%3A0x615d72e1ca960564!2sGedung%20JSM%20(PT%20Jaring%20Synergi%20Mandiri)!5e0!3m2!1sid!2sid!4v1719306217233!5m2!1sid!2sid"
+          >
+            <div className="w-[1200px] bg-white max-w-[1280px] h-[280px] sm:h-[300px] md:h-[320px] lg:h-[360px] xl:h-[400px] mx-auto p-4 tracking-tight text-slate-100/50 flex flex-col">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.4546476496125!2d106.8093531!3d-6.1771726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f680ab7fc64b%3A0x615d72e1ca960564!2sGedung%20JSM%20(PT%20Jaring%20Synergi%20Mandiri)!5e0!3m2!1sid!2sid!4v1719306217233!5m2!1sid!2sid"
+                width="100%"
+                height="400"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </PinContainerView> */}
+        {/* </div> */}
       </main>
 
       <Footer />
