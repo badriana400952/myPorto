@@ -70,16 +70,13 @@ export const HeroSection: React.FC = () => {
         </div>
       </div>
       <div className="flex-1 flex justify-center md:justify-end">
-        <div className="relative">
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-secondary rounded-xl blur-xl opacity-30 animate-pulse"></div>
-          <div className="relative bg-background rounded-xl overflow-hidden border border-divider">
-            <Image
-              removeWrapper
-              src="./dd3.jpg"
-              alt="Developer Portrait"
-              className="w-[300px] h-[300px] md:w-[400px] md:h-[400px] object-cover"
-            />
-          </div>
+        <div className="w-full max-w-screen-lg mx-auto">
+          <Image
+            removeWrapper
+            src="./badri.png"
+            alt="Developer Portrait"
+            className="w-full h-auto object-cover"
+          />
         </div>
       </div>
     </section>
