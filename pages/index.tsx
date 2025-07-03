@@ -2,7 +2,6 @@
 import { NpmPackageCard } from "@/components/package";
 import {
   Button,
-  Link,
   Navbar,
   NavbarBrand,
   NavbarContent,
@@ -19,6 +18,7 @@ import { ProjectsSection } from "../components/projects-section";
 import { SkillsSection } from "../components/skills-section";
 import { TestimonialsSection } from "../components/testimonials-section";
 import { ThemeSwitcher } from "../components/theme-switcher";
+import Link from "next/link";
 
 export default function Home() {
   const packages = [
@@ -103,6 +103,15 @@ export default function Home() {
           <NavbarItem>
             <Link color="foreground" href="#gallery" className="font-medium">
               Galery
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link
+              color="foreground"
+              href="/components/Introduction"
+              className="font-medium"
+            >
+              My Components
             </Link>
           </NavbarItem>
         </NavbarContent>
