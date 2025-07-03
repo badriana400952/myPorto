@@ -91,7 +91,7 @@ export function DraggableCard() {
 
   return (
     <>
-      <HeroHighlight className="w-full">
+      <HeroHighlight className="w-full mt-40">
         <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-clip">
           <div className="w-full flex items-start justify-center -mt-40">
             <Avatar
