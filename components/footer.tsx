@@ -1,6 +1,7 @@
-import React from "react";
-import { Link, Divider } from "@heroui/react";
+import { Divider, Link } from "@heroui/react";
 import { Icon } from "@iconify/react";
+import React from "react";
+import FloatingWhatsApp from "./FloatingWhatsApp";
 
 export const Footer: React.FC = () => {
   return (
@@ -75,9 +76,7 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
         </div>
-
         <Divider className="my-8" />
-
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-foreground-500 text-sm">
             © {new Date().getFullYear()} Badriana.dev. All rights reserved.
@@ -94,6 +93,8 @@ export const Footer: React.FC = () => {
             </Link>
           </div>
         </div>
+
+        <FloatingWhatsApp />
       </div>
     </footer>
   );

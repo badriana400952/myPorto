@@ -47,12 +47,73 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       <Head>
-        <title>Badriana</title>
+        {/* Meta Basic */}
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="index, follow" />
+
+        {/* Title & Description */}
+        <title>Jasa Pembuatan Website | Badri Web Studio</title>
         <meta
           name="description"
-          content="Professional developer portfolio showcasing projects and skills"
+          content="Jasa pembuatan website landing page untuk UMKM, freelancer, dan startup. Modern, cepat, dan mobile-friendly."
         />
-        <link rel="icon" href="./logos.jpeg" />
+
+        {/* Open Graph (Facebook, WhatsApp, LinkedIn) */}
+        <meta
+          property="og:title"
+          content="Jasa Pembuatan Website | Badri Web Studio"
+        />
+        <meta
+          property="og:description"
+          content="Landing page modern, cepat, mobile-friendly, cocok untuk UMKM dan startup."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://my-porto-delta-six.vercel.app/"
+        />
+        <meta
+          property="og:image"
+          content="https://my-porto-delta-six.vercel.app/preview.jpg"
+        />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Jasa Pembuatan Website | Badri Web Studio"
+        />
+        <meta
+          name="twitter:description"
+          content="Landing page modern, cepat, mobile-friendly, cocok untuk UMKM dan startup."
+        />
+        <meta
+          name="twitter:image"
+          content="https://my-porto-delta-six.vercel.app/preview.jpg"
+        />
+
+        {/* JSON-LD Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Badriana",
+              url: "https://my-porto-delta-six.vercel.app/",
+              sameAs: [
+                "https://github.com/badriana400952",
+                "https://www.linkedin.com/in/namalinkedinmu", // ganti jika ada
+              ],
+              jobTitle: "Frontend Developer",
+              worksFor: {
+                "@type": "Organization",
+                name: "PT Jaring Synergi Mandiri",
+              },
+            }),
+          }}
+        />
       </Head>
 
       {/* Navigation */}
