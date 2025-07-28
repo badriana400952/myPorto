@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://my-porto-delta-six.vercel.app
+
+# Sitemaps
+Sitemap: https://my-porto-delta-six.vercel.app/sitemap.xml
