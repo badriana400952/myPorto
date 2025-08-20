@@ -105,6 +105,17 @@ export const ProjectsSection: React.FC = () => {
       technologies: ["React", "Chakra UI"],
       link: "https://github.com/badriana400952/portfolio",
     },
+    {
+      id: "7",
+      title: "Fast Food (Independent Task)",
+      description:
+        "A simple frontend app to display fast food menus with a modern and responsive UI using React and Chakra UI.",
+      image: "./warung3.png",
+      category: "fullstack",
+      technologies: ["Next js", "TypeScript", "Hero UI", "PostgreSQL",],
+      link: "https://github.com/badriana400952/warung-makan",
+    }
+
   ];
 
   const filteredProjects =
@@ -192,14 +203,14 @@ export const ProjectsSection: React.FC = () => {
       </div>
 
       <div className="flex justify-center mt-12">
-        <Button
+        {/* <Button
           color="primary"
           variant="bordered"
           size="lg"
           endContent={<Icon icon="lucide:arrow-right" />}
         >
           View All Projects
-        </Button>
+        </Button> */}
       </div>
     </section>
   );
