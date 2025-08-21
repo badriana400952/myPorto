@@ -29,7 +29,7 @@ export const TestimonialsSection: React.FC = () => {
       author: "Fajri",
       position: "Kepala Bagian IT",
       company: "Ganesha Operation.",
-      avatar: "./pajri.png",
+      avatar: "./galery/pajri.png",
     },
     {
       id: "3",

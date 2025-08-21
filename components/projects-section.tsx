@@ -1,5 +1,6 @@
 import {
   Button,
+  // Button,
   Card,
   CardBody,
   CardFooter,
@@ -137,7 +138,7 @@ export const ProjectsSection: React.FC = () => {
       <Tabs
         aria-label="Project categories"
         selectedKey={selected}
-        onSelectionChange={setSelected as any}
+        onSelectionChange={(key) => setSelected(key.toString())}
         className="flex justify-center mb-12"
         variant="light"
         color="primary"
@@ -181,13 +182,16 @@ export const ProjectsSection: React.FC = () => {
               </CardBody>
               <CardFooter className="flex justify-between items-center px-5 py-3 bg-content1 transition-colors duration-300 group-hover:bg-content1/90">
                 <Button
+                  as={Link}
+                  href={project.link}
                   color="primary"
                   variant="light"
                   size="sm"
                   endContent={<Icon icon="lucide:external-link" width={16} />}
                 >
-                  <Link href={project.link}> View Project</Link>
+                  View Project
                 </Button>
+
                 <div className="flex gap-2">
                   <Button isIconOnly variant="flat" size="sm">
                     <Icon icon="lucide:github" width={16} />
@@ -203,14 +207,14 @@ export const ProjectsSection: React.FC = () => {
       </div>
 
       <div className="flex justify-center mt-12">
-        {/* <Button
+        <Button
           color="primary"
           variant="bordered"
           size="lg"
           endContent={<Icon icon="lucide:arrow-right" />}
         >
           View All Projects
-        </Button> */}
+        </Button>
       </div>
     </section>
   );
