@@ -115,7 +115,22 @@ export const ProjectsSection: React.FC = () => {
       category: "fullstack",
       technologies: ["Next js", "TypeScript", "Hero UI", "PostgreSQL",],
       link: "https://github.com/badriana400952/warung-makan",
+    },
+    {
+      id: "8",
+      title: "Wakil Ketua DPRD Banten (Freelance Project)",
+      description: "Website profil resmi Imron Rosadi, Wakil Ketua DPRD Banten, dengan desain yang dioptimalkan untuk tampilan mobile.",
+      image: "./imron2.jpg",
+      category: "frontend",
+      technologies: [
+        "HTML",
+        "CSS",
+        "Bootstrap 4.3.1",
+        "JavaScript",
+      ],
+      link: "https://imron-rosadi.vercel.app/",
     }
+
 
   ];
 
