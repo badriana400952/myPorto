@@ -129,7 +129,18 @@ export const ProjectsSection: React.FC = () => {
         "JavaScript",
       ],
       link: "https://imron-rosadi.vercel.app/",
+    },
+    {
+      id: "9",
+      title: "Integrasi AI Query (Independent Task)",
+      description:
+        "Front-end app with AI-powered search to perform CRUD operations across all databases with a single command.",
+      image: "./aiquery.png",
+      category: "fullstack",
+      technologies: ["Next js", "TypeScript", "Aceternity UI", "PostgreSQL", "ZenMux AI API"],
+      link: "https://integrasi-sql-ai-git-main-badrianas-projects.vercel.app/",
     }
+
 
 
   ];
@@ -221,16 +232,7 @@ export const ProjectsSection: React.FC = () => {
         ))}
       </div>
 
-      <div className="flex justify-center mt-12">
-        <Button
-          color="primary"
-          variant="bordered"
-          size="lg"
-          endContent={<Icon icon="lucide:arrow-right" />}
-        >
-          View All Projects
-        </Button>
-      </div>
+     
     </section>
   );
 };

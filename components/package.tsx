@@ -43,7 +43,7 @@ export const NpmPackageCard = ({
         <div className="flex items-center flex-wrap gap-4 text-sm text-muted-foreground">
           <span className="flex items-center gap-1">
             <span className="w-4 h-4" /> {weeklyDownloads.toLocaleString()}{" "}
-            downloads
+            weekly downloads
           </span>
           <span className="flex items-center gap-1">
             <p className="w-4 h-4" /> {stars} stars
