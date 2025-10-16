@@ -42,6 +42,16 @@ export default function Home() {
       npmUrl: "https://www.npmjs.com/package/copong-utils",
       repoUrl: "https://github.com/badriana400952/copong-utils",
     },
+    {
+      name: "react-virtual-component-boundary",
+      description:
+        "Komponen React yang powerful dan reusable untuk menjadi Error Boundary sekaligus wrapper modular. Cocok untuk menjaga kode React tetap rapi, aman, dan mudah digunakan ulang tanpa membuat banyak file kecil.",
+      version: "2.0.4",
+      weeklyDownloads: 7,
+      stars: 0,
+      npmUrl: "https://www.npmjs.com/package/react-virtual-component-boundary",
+      repoUrl: "https://www.npmjs.com/package/react-virtual-component-boundary",
+    },
   ];
 
   return (
