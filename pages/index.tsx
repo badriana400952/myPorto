@@ -1,14 +1,13 @@
 "use client";
 import { NpmPackageCard } from "@/components/package";
 import {
-  Button,
   Navbar,
   NavbarBrand,
   NavbarContent,
-  NavbarItem,
+  NavbarItem
 } from "@heroui/react";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import Head from "next/head";
+import Link from "next/link";
 import { AboutSection } from "../components/about-section";
 import { ContactSection } from "../components/contact-section";
 import { ExperienceGallery } from "../components/experience-gallery";
@@ -18,7 +17,6 @@ import { ProjectsSection } from "../components/projects-section";
 import { SkillsSection } from "../components/skills-section";
 import { TestimonialsSection } from "../components/testimonials-section";
 import { ThemeSwitcher } from "../components/theme-switcher";
-import Link from "next/link";
 
 export default function Home() {
   const packages = [
@@ -52,6 +50,17 @@ export default function Home() {
       npmUrl: "https://www.npmjs.com/package/react-virtual-component-boundary",
       repoUrl: "https://www.npmjs.com/package/react-virtual-component-boundary",
     },
+    {
+      name: "badrian-icon",
+      description:
+        "badrian-icon adalah koleksi ikon modern untuk React dan Next.js, ringan, konsisten, dan mudah dikustomisasi dengan Tailwind CSS atau class React.",
+      version: "2.1.26",
+      weeklyDownloads: 42,
+      stars: 2.572,
+      npmUrl: "https://www.npmjs.com/package/badrian-icon",
+      repoUrl: "/badrian-icon",
+    }
+
   ];
 
   return (
@@ -190,7 +199,7 @@ export default function Home() {
           <NavbarItem className="mr-4">
             <ThemeSwitcher />
           </NavbarItem>
-          <NavbarItem>
+          {/* <NavbarItem>
             <Button
               as={Link}
               color="primary"
@@ -201,7 +210,7 @@ export default function Home() {
             >
               Contact Me
             </Button>
-          </NavbarItem>
+          </NavbarItem> */}
         </NavbarContent>
       </Navbar>
 
@@ -213,10 +222,10 @@ export default function Home() {
         <SkillsSection />
         {/* <GlowingEffectPage /> */}
         <div className="">
-          <h1 className="text-4xl font-bold mb-8 text-center">
+          <h1 className="text-4xl font-bold mb-8 text-center text-gray-500">
             📦 My NPM Packages
           </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-4">
             {packages.map((pkg) => (
               <NpmPackageCard key={pkg.name} {...pkg} />
             ))}
