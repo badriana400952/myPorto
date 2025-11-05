@@ -51,14 +51,15 @@ export const NpmPackageCard = ({
         </div>
         <div className="flex flex-wrap gap-2">
           <Button variant="light">
-            <a href={npmUrl} target="_blank" rel="noreferrer">
+            <a href={npmUrl} target="_blank" rel="noreferrer" className="text-gray-500">
               View on NPM
             </a>
           </Button>
           <Button variant="ghost">
-            <a href={repoUrl} target="_blank" rel="noreferrer">
+            {name === "badrian-icon" ? <a target="_blank" href="/badrian-icons" className="text-gray-500">Lihat Icons</a> : <a href={repoUrl} target="_blank" rel="noreferrer" className="text-gray-500">
               Source Code
-            </a>
+            </a>}
+
           </Button>
         </div>
       </div>
