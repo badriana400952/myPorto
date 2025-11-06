@@ -4,7 +4,8 @@ import { HeroUIProvider } from "@heroui/react";
 import { If, Then, Else, ElseIf } from "copong-utils";
 import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar";
-
+import { AuroraBackground, } from "@/components/ui/aurora-background";
+import { motion } from "motion/react";
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const noSidebarRoutes = ["/"]; // tambahkan juga "/about", "/portfolio" kalau perlu
@@ -21,14 +22,28 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </Then>
         <ElseIf condition={isIcon}>
-          <Component {...pageProps} />
-        </ElseIf>
-        <Else>
-          <Navbar>
+          <AuroraBackground>
+            <motion.div
+              initial={{ opacity: 0.0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: 0.3,
+                duration: 0.8,
+                ease: "easeInOut",
+              }}
+              className="relative flex flex-col gap-4 items-center justify-center"
+            >
             <Component {...pageProps} />
-          </Navbar>
-        </Else>
-      </If>
-    </HeroUIProvider>
+          </motion.div>
+        </AuroraBackground>
+
+      </ElseIf>
+      <Else>
+        <Navbar>
+          <Component {...pageProps} />
+        </Navbar>
+      </Else>
+    </If>
+    </HeroUIProvider >
   );
 }

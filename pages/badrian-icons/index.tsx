@@ -1,4 +1,3 @@
-import { AuroraBackground } from "@/components/ui/aurora-background";
 import { CodeBlock } from "@/components/ui/code-block";
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input";
 import { colors, shades } from "@/utils/data";
@@ -11,7 +10,8 @@ import {
     ModalBody as ModlasBodys,
     useDisclosure,
 } from "@heroui/react";
-import { motion } from "motion/react";
+import { ArrowAltLdown, ArrowAltLright } from "badrian-icon";
+
 import { FC, SVGProps, useEffect, useState } from "react";
 
 interface IconItem {
@@ -21,6 +21,8 @@ interface IconItem {
 
 const Index = () => {
     const [search, setSearch] = useState<IconItem[]>(icons);
+    const [visibleCount, setVisibleCount] = useState(30); // tampilkan 30 dulu
+    const [hasMore, setHasMore] = useState(true);
 
     // 🟢 Modal 1: Icon Preview
     const {
@@ -57,11 +59,12 @@ const Index = () => {
 
 
     const placeholders = [
-        "What's the Add icon for?",
-        "What's the AddBrokenLine icon for?",
-        "What's the AddDuotone icon for?",
-        "What's the AddLight icon for?",
-        "What's the AddRingBrokenLine icon for?",
+        "Cari ikon untuk proyekmu...",
+        "Apa ikon terbaik untuk tombol hapus?",
+        "Tampilkan ikon bergaya duotone...",
+        "Butuh ikon dengan gaya minimalis?",
+        "Temukan ikon untuk dashboard kamu...",
+        "Yaudah terserah...",
     ];
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,63 +78,76 @@ const Index = () => {
         e.preventDefault();
         setSearch(icons.sort((a, b) => a.name.localeCompare(b.name)));
     };
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 && hasMore) {
+                setVisibleCount((prev) => prev + 30);
+            }
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [hasMore]);
 
     return (
-        <div className="max-w-8xl container mx-auto">
-            <AuroraBackground>
-                <motion.div
-                    initial={{ opacity: 0.0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{
-                        delay: 0.3,
-                        duration: 0.8,
-                        ease: "easeInOut",
-                    }}
-                    className="relative flex flex-col gap-4 items-center justify-center"
-                >
-                    <div className="h-[20rem] flex flex-col justify-center items-center">
-                        <h2 className="mt-5 text-xl text-center sm:text-5xl dark:text-white text-black">
-                            Satu Set Ikon untuk Setiap Proyek
-                        </h2>
-                        <p className="w-4xl mt-3 mb-10 text-center text-sm text-gray-600">
-                            Satu set ikon lengkap dengan 4964 ikon yang menampilkan ketebalan
-                            dan jarak garis yang sempurna - siap untuk React, Next.js, Remix, Qwik dan framework react lainnya
-                        </p>
-                        <PlaceholdersAndVanishInput
-                            placeholders={placeholders}
-                            onChange={handleChange}
-                            onSubmit={onSubmit}
+        <div className="max-w-8xl container mx-auto mb-8">
+
+            <div className="h-[20rem] flex flex-col justify-center items-center">
+                <h2 className="mt-5 text-xl text-center sm:text-5xl dark:text-white text-black">
+                    Satu Set Ikon untuk Setiap Proyek
+                </h2>
+                <p className="w-4xl mt-3 mb-10 text-center text-sm text-gray-600">
+                    Satu set ikon lengkap dengan 4964 ikon yang menampilkan ketebalan
+                    dan jarak garis yang sempurna - siap untuk React, Next.js, Remix, Qwik dan framework react lainnya
+                </p>
+                <div className="flex justify-center items-center gap-3 w-[40rem] mb-8 ">
+                    <div className="w-[50%]">
+                        <CodeBlock
+                            language="jsx"
+                            filename={`Npm`}
+                            highlightLines={[1]}
+                            code={`npm i badrian-icon`}
                         />
                     </div>
-
-                    <div className="mt-9 w-full px-3 m-auto">
-                        <div className="grid grid-cols-10 gap-8">
-                            {search.map((item, index) => {
-                                const IconComponent = item.icon;
-                                return (
-                                    <div
-                                        key={index}
-                                        className="relative bg-gradient-to-b from-white/60 to-white/10 backdrop-blur-xl brightness-110 border border-white/30 rounded-xl shadow-inner overflow-hidden"
-                                    >
-                                        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/30 to-transparent opacity-40"></div>
-                                        <div
-                                            className="relative p-6 text-gray-800 font-semibold cursor-pointer"
-                                            onClick={() => {
-                                                onIconOpen();
-                                                setIconName([{ name: item.name, icon: IconComponent }]);
-                                            }}
-                                        >
-                                            <IconComponent
-                                                className={`w-9 h-9 text-${selected?.color}-${selected?.shade}`}
-                                            />
-                                        </div>
-                                    </div>
-                                );
-                            })}
+                    <div className="w-[50%] flex justify-center items-center">
+                        <div className="bg-transparent dark:bg-white dark:text-black text-black flex items-center gap-2 font-bold underline justify-center   ">
+                            <ArrowAltLright  className={"w-8 h-8 text-black"} />
+                            <a href="https://www.npmjs.com/package/badrian-icon" className="" target="_blank">Lihat di npm</a>
                         </div>
                     </div>
-                </motion.div>
-            </AuroraBackground>
+                </div>
+                <PlaceholdersAndVanishInput
+                    placeholders={placeholders}
+                    onChange={handleChange}
+                    onSubmit={onSubmit}
+                />
+            </div>
+
+            <div className="mt-9 w-full px-3 m-auto">
+                <div className="grid grid-cols-10 gap-8">
+                    {search.slice(0, visibleCount).map((item, index) => {
+                        const IconComponent = item.icon;
+                        return (
+                            <div
+                                key={index}
+                                className="relative bg-gradient-to-b from-white/60 to-white/10 backdrop-blur-xl brightness-110 border border-white/30 rounded-xl shadow-inner overflow-hidden"
+                            >
+                                <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/30 to-transparent opacity-40"></div>
+                                <div
+                                    className="relative p-6 text-gray-800 font-semibold cursor-pointer"
+                                    onClick={() => {
+                                        onIconOpen();
+                                        setIconName([{ name: item.name, icon: IconComponent }]);
+                                    }}
+                                >
+                                    <IconComponent
+                                        className={`w-9 h-9 text-${selected?.color}-${selected?.shade}`}
+                                    />
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
 
             {/* 🟢 Modal 1 — Icon Preview */}
             <Modlas isOpen={isIconModalOpen} onOpenChange={onIconOpenChange} size="4xl">
@@ -253,6 +269,22 @@ const Index = () => {
                     </ModlasBodys>
                 </ModalContents>
             </Modlas>
+
+            {visibleCount < search.length && (
+                <div className="flex justify-center mt-10">
+                    <button
+                        onClick={() => {
+                            const nextCount = visibleCount + 30;
+                            setVisibleCount(nextCount);
+                            if (nextCount >= search.length) setHasMore(false);
+                        }}
+                        className="bg-black dark:bg-white dark:text-black text-white flex justify-center items-center py-2 px-4 rounded-md"
+                    >
+                        Muat semua ikon <ArrowAltLdown className={"w-8 h-8 text-white"} />
+                    </button>
+                </div>
+            )}
+
         </div>
     );
 };
