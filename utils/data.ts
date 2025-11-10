@@ -205,10 +205,50 @@ export const tabelPenggunaan = `<Table className="w-full text-sm text-left rtl:t
 </Table>`;
 
 
-  export const colors = [
-    "red", "orange", "amber", "yellow", "lime", "green", "emerald",
-    "teal", "cyan", "sky", "blue", "indigo", "violet", "purple",
-    "fuchsia", "pink", "rose", "slate", "gray", "zinc", "neutral", "stone"
-  ];
+export const colors = [
+  "red", "orange", "amber", "yellow", "lime", "green", "emerald",
+  "teal", "cyan", "sky", "blue", "indigo", "violet", "purple",
+  "fuchsia", "pink", "rose", "slate", "gray", "zinc", "neutral", "stone"
+];
 
-  export const shades = [50,100,200,300,400,500,600,700,800,900,950];
+export const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+
+
+export const projectsIcons = [
+  {
+    id: "1",
+    title: "All icons",
+    description:
+      "",
+    category: "",
+  },
+  {
+    id: "2",
+    title: "Leonid-Tsvetkov",
+    description:
+      "",
+    category: "",
+  },
+  {
+    id: "3",
+    title: "bendera-Даниил",
+    description:
+      "",
+    category: "",
+  },
+  {
+    id: "4",
+    title: "Rounak-Bose-soscial",
+    description:
+      "",
+    category: "",
+  },
+
+];
+
+export const keyTabsMap = [
+  { id: "1", title: "All-icons", table: 731981, key: "all" },
+  { id: "2", title: "Leonid-Tsvetkov", table: 731981, key: "Leonid-Tsvetkov" },
+  { id: "3", title: "bendera-Даниил", table: 731981, key: "bendera-Даниил" },
+  { id: "4", title: "Rounak-Bose-soscial", table: 732078, key: "Rounak-Bose-soscial" },
+]
