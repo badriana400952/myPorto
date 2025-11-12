@@ -247,8 +247,9 @@ export const projectsIcons = [
 ];
 
 export const keyTabsMap = [
-  { id: "1", title: "All-icons", table: 731981, key: "all" },
+  // { id: "1", title: "All-icons", table: 731981, key: "all" },
+  { id: "1", title: "Kryston-Schwarze", table: 737010, key: "Kryston-Schwarze" },
   { id: "2", title: "Leonid-Tsvetkov", table: 731981, key: "Leonid-Tsvetkov" },
-  { id: "3", title: "bendera-Даниил", table: 731981, key: "bendera-Даниил" },
+  { id: "3", title: "bendera-Даниил", table: 732071, key: "bendera-Даниил" },
   { id: "4", title: "Rounak-Bose-soscial", table: 732078, key: "Rounak-Bose-soscial" },
 ]

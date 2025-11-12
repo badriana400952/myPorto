@@ -2,6 +2,7 @@
 import { CodeBlock } from "@/components/ui/code-block";
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input";
 import { colors, shades } from "@/utils/data";
+import { iconMapKrystonSchwarze } from "@/utils/iconMapKryston-Schwarze";
 import {
     Button,
     ModalContent as ModalContents,
@@ -16,8 +17,8 @@ import { FC, SVGProps, useEffect, useState } from "react";
 import ReactDOMServer from "react-dom/server";
 import { mapBendera } from "../../utils/iconMapBendera";
 import { iconMap } from "../../utils/iconMapLeonid";
-import Pagination from "./pagination";
 import { iconMapRounak } from "../../utils/iconMapRounak-Bose-soscial";
+import Pagination from "./pagination";
 
 export interface IconItem {
     name: string;
@@ -40,7 +41,7 @@ const Index = () => {
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
-    const [selectedTabs, setSelectedTabs] = useState<string>("all");
+    const [selectedTabs, setSelectedTabs] = useState<string>("Leonid-Tsvetkov");
     const [selected, setSelected] = useState<Iselected>({
         color: "stone",
         shade: 950,
@@ -51,10 +52,10 @@ const Index = () => {
     ]);
 
     const [keyTabs, setKeyTabs] = useState({
-        id: "1",
-        title: "All-icons",
+        id: "2",
+        title: "Leonid-Tsvetkov",
         table: 731981,
-        key: "all"
+        key: "Leonid-Tsvetkov"
     });
 
     const {
@@ -88,12 +89,13 @@ const Index = () => {
                     Component = mapBendera[item.icons as keyof typeof mapBendera];
                 } else if (keyTabs.table === 732078) {
                     Component = iconMapRounak[item.icons as keyof typeof iconMapRounak];
+                } else if (keyTabs.table === 737010) {
+                    Component = iconMapKrystonSchwarze[item.icons as keyof typeof iconMapKrystonSchwarze];
                 }
 
                 return { name: item.name, icons: Component || (() => <svg />), iconName: item.icons };
             });
             setTotalPages(data.count / 100);
-            console.log(data);
             setIcons(mappedIcons);
         };
 
@@ -111,9 +113,11 @@ const Index = () => {
         "Temukan ikon untuk dashboard kamu...",
         "Yaudah terserah...",
     ];
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
+        if (e.target.value) {
+            setPage(1);
+        }
     };
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -125,7 +129,7 @@ const Index = () => {
         <div className="max-w-8xl container mx-auto mb-8 mt-10">
             <div className="h-[20rem] flex flex-col justify-center items-center">
                 <h2 className="mt-5 text-xl text-center sm:text-5xl dark:text-white text-black">
-                    Satu Set Ikon untuk Setiap Proyek
+                    Satu Set Ikon untuk Setiap Proyek 
                 </h2>
                 <p className="w-4xl mt-3 mb-10 text-center text-sm text-gray-600">
                     Satu set ikon lengkap dengan 4964 ikon — siap untuk React, Next.js,
@@ -147,18 +151,15 @@ const Index = () => {
                 color="primary"
             >
 
-                <Tab key="all" title="All Projects" onClick={() => {
-                    setKeyTabs({
-                        id: "1",
-                        title: "All-icons",
-                        table: 731981,
-                        key: "all"
-                    })
-                    setPage(1)
-                }} />
                 <Tab key="Leonid-Tsvetkov" title="Leonid-Tsvetkov" onClick={() => {
                     setKeyTabs(
                         { id: "2", title: "Leonid-Tsvetkov", table: 731981, key: "Leonid-Tsvetkov" },
+                    )
+                    setPage(1)
+                }} />
+                <Tab key="Kryston-Schwarze" title="Kryston-Schwarze" onClick={() => {
+                    setKeyTabs(
+                        { id: "1", title: "Kryston-Schwarze", table: 737010, key: "Kryston-Schwarze" },
                     )
                     setPage(1)
                 }} />
