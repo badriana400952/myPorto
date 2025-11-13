@@ -1,17 +1,18 @@
 "use client";
 import {
-    MobileNav,
-    MobileNavHeader,
-    MobileNavMenu,
-    MobileNavToggle,
-    Navbar,
-    NavbarLogo,
-    NavBody,
-    NavItems
+  MobileNav,
+  MobileNavHeader,
+  MobileNavMenu,
+  MobileNavToggle,
+  Navbar,
+  NavbarButton,
+  NavbarLogo,
+  NavBody,
+  NavItems
 } from "@/components/ui/resizable-navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function NavbarDemo({children}: {children: React.ReactNode}) {
+export default function NavbarDemo({ children }: { children: React.ReactNode }) {
   const navItems = [
     {
       name: "Dokumentasi",
@@ -21,14 +22,18 @@ export default function NavbarDemo({children}: {children: React.ReactNode}) {
       name: "Icons",
       link: "/badrian-icons",
     },
-    {
-      name: "Contact",
-      link: "/badrian-icons",
-    },
+    // {
+    //   name: "Donasi",
+    //   link: "https://saweria.co/badriana",
+    // },
   ];
+ const [isClient, setIsClient] = useState(false);
 
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  if (!isClient) return null;
   return (
     <div className="relative mb-10 w-full ">
       <Navbar>
@@ -37,9 +42,16 @@ export default function NavbarDemo({children}: {children: React.ReactNode}) {
           <NavbarLogo />
           <NavItems items={navItems} />
           {/* <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary">Login</NavbarButton>
             <NavbarButton variant="primary">Book a call</NavbarButton>
-          </div> */}
+            </div> */}
+          <div className="flex items-center gap-4">
+
+            <NavbarButton variant="primary">
+              <a href="https://saweria.co/badriana" target="_blank">
+                <span className="relative z-20 cursor-pointer">Donasi / donation</span>
+            </a>
+            </NavbarButton>
+          </div>
         </NavBody>
 
         {/* Mobile Navigation */}
@@ -85,7 +97,7 @@ export default function NavbarDemo({children}: {children: React.ReactNode}) {
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
-     {children}
+      {children}
 
       {/* Navbar */}
     </div>
