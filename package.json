@@ -15,7 +15,7 @@
     "@iconify/react": "^6.0.0",
     "@tabler/icons-react": "^3.34.0",
     "@types/react-syntax-highlighter": "^15.5.13",
-    "badrian-icon": "^3.0.3",
+    "badrian-icon": "^3.0.8",
     "clsx": "^2.1.1",
     "copong-utils": "^1.0.8",
     "framer-motion": "^12.16.0",

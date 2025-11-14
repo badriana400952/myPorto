@@ -422,7 +422,7 @@ import {
   UserSquare,
   UserVoice,
 }
-  from "badrian-icon";
+  from "badrian-icon/kryston"
 import { SVGProps } from "react";
 
 export const iconMapKrystonSchwarze: Record<string, React.FC<SVGProps<SVGSVGElement>>> = {

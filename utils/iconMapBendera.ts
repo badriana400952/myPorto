@@ -255,7 +255,7 @@ import {
   ZA,
   ZM,
   ZW,
-} from "badrian-icon";
+} from "badrian-icon/bendera";
 import { SVGProps } from "react";
 
  

@@ -38,7 +38,7 @@ const generatePages = () => {
   const pages = generatePages();
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 z-[999]">
       {pages.map((p, idx) => (
         <button
           key={idx}
