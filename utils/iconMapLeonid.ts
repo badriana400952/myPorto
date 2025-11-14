@@ -31,7 +31,6 @@ import {
   AddSquareFill,
   AddSquareFillLight,
   AddSquareLight,
-  Anjing,
   Calendar,
   CalendarAdd,
   CalendarAddDuotone,
@@ -1342,7 +1341,7 @@ import {
   CircleRightAlt,
   CircleRightAltLight,
   CircleRightLight,
-  Cloud,
+  CloudA,
   CloudAlt,
   CloudAltDuotone,
   CloudAltFill,
@@ -1620,7 +1619,7 @@ import {
   SoundMuteDuotoneLine,
   SoundMuteFill,
   SoundMuteLight,
-  Star,
+  StarA,
   StarDuotone,
   StarDuotoneLine,
   StarFill,
@@ -1803,7 +1802,7 @@ import {
   LayersDuotone,
   LayersFill,
   LayersLight,
-  Line,
+  Lines,
   LineAlt,
   LineDuotone,
   LineDuotone1,
@@ -1930,10 +1929,10 @@ import {
   WidgetLight,
   BellPin,
 
-} from "badrian-icon";
+} from "badrian-icon/leonid";
 import { SVGProps } from "react";
 
-export const iconMap:Record<string, React.FC<SVGProps<SVGSVGElement>>> = {
+export const iconMapLeonid:Record<string, React.FC<SVGProps<SVGSVGElement>>> = {
   Add,
   AddA,
   AddBrokenLine,
@@ -1966,7 +1965,6 @@ export const iconMap:Record<string, React.FC<SVGProps<SVGSVGElement>>> = {
   AddSquareFill,
   AddSquareFillLight,
   AddSquareLight,
-  Anjing,
   Calendar,
   CalendarAdd,
   CalendarAddDuotone,
@@ -3277,7 +3275,7 @@ export const iconMap:Record<string, React.FC<SVGProps<SVGSVGElement>>> = {
   CircleRightAlt,
   CircleRightAltLight,
   CircleRightLight,
-  Cloud,
+  CloudA,
   CloudAlt,
   CloudAltDuotone,
   CloudAltFill,
@@ -3555,7 +3553,7 @@ export const iconMap:Record<string, React.FC<SVGProps<SVGSVGElement>>> = {
   SoundMuteDuotoneLine,
   SoundMuteFill,
   SoundMuteLight,
-  Star,
+  StarA,
   StarDuotone,
   StarDuotoneLine,
   StarFill,
@@ -3738,7 +3736,7 @@ export const iconMap:Record<string, React.FC<SVGProps<SVGSVGElement>>> = {
   LayersDuotone,
   LayersFill,
   LayersLight,
-  Line,
+  Lines,
   LineAlt,
   LineDuotone,
   LineDuotone1,

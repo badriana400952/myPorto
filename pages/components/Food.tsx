@@ -2,23 +2,18 @@
 import { CodeBlock } from "@/components/ui/code-block";
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input";
 import { colors, shades } from "@/utils/data";
-import { iconMapKrystonSchwarze } from "@/utils/iconMapKryston-Schwarze";
+import { iconMapFood } from "@/utils/iconMapFood";
 import {
     Button,
     ModalContent as ModalContents,
     ModalHeader,
     Modal as Modlas,
     ModalBody as ModlasBodys,
-    Tab,
-    Tabs,
-    useDisclosure,
+    useDisclosure
 } from "@heroui/react";
 import { FC, SVGProps, useEffect, useState } from "react";
 import ReactDOMServer from "react-dom/server";
-import { mapBendera } from "../../utils/iconMapBendera";
-import { iconMapLeonid } from "../../utils/iconMapLeonid";
-import { iconMapRounak } from "../../utils/iconMapRounak-Bose-soscial";
-import Pagination from "./pagination";
+import Pagination from "../badrian-icons/pagination";
 
 export interface IconItem {
     name: string;
@@ -41,7 +36,6 @@ const Index = () => {
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
-    const [selectedTabs, setSelectedTabs] = useState<string>("Leonid-Tsvetkov");
     const [selected, setSelected] = useState<Iselected>({
         color: "stone",
         shade: 950,
@@ -51,12 +45,7 @@ const Index = () => {
         { name: "", icons: () => <svg></svg>, iconName: "" },
     ]);
 
-    const [keyTabs, setKeyTabs] = useState({
-        id: "2",
-        title: "Leonid-Tsvetkov",
-        table: 731981,
-        key: "Leonid-Tsvetkov"
-    });
+
 
     const {
         isOpen: isIconModalOpen,
@@ -74,25 +63,16 @@ const Index = () => {
     useEffect(() => {
         const handleGet = async () => {
             const res = await fetch(
-                `https://api.baserow.io/api/database/rows/table/${keyTabs.table}/?user_field_names=true&page=${page}&filter__name__contains=${search}`,
+                `https://api.baserow.io/api/database/rows/table/740043/?user_field_names=true&page=${page}&filter__name__contains=${search}`,
                 {
                     headers: { Authorization: `Token ${token}` },
                 }
             );
             const data = await res.json();
+            console.log("data",data)
             const mappedIcons: IconItem[] = data.results.map((item: IconItemFromBaserow) => {
                 let Component: FC<SVGProps<SVGSVGElement>> | null = null;
-
-                if (keyTabs.table === 731981) {
-                    Component = iconMapLeonid[item.icons as keyof typeof iconMapLeonid];
-                } else if (keyTabs.table === 732071) {
-                    Component = mapBendera[item.icons as keyof typeof mapBendera];
-                } else if (keyTabs.table === 732078) {
-                    Component = iconMapRounak[item.icons as keyof typeof iconMapRounak];
-                } else if (keyTabs.table === 737010) {
-                    Component = iconMapKrystonSchwarze[item.icons as keyof typeof iconMapKrystonSchwarze];
-                }
-
+                Component = iconMapFood[item.icons as keyof typeof iconMapFood];
                 return { name: item.name, icons: Component || (() => <svg />), iconName: item.icons };
             });
             setTotalPages(data.count / 100);
@@ -100,11 +80,11 @@ const Index = () => {
         };
 
         handleGet();
-    }, [page, token, search, keyTabs ]);
+    }, [page, token, search ]);
 
 
 
-
+// console.log(icons)
     const placeholders = [
         "Cari ikon untuk proyekmu...",
         "Apa ikon terbaik untuk tombol hapus?",
@@ -126,7 +106,7 @@ const Index = () => {
     };
 
     return (
-        <div className="max-w-8xl container mx-auto mb-8 mt-10">
+        <div className="max-w-8xl p-5 container mx-auto mb-8  ">
             <div className="h-[20rem] flex flex-col justify-center items-center">
                 <h2 className="mt-5 text-xl text-center sm:text-5xl dark:text-white text-black">
                     Satu Set Ikon untuk Setiap Proyek 
@@ -135,6 +115,18 @@ const Index = () => {
                     Satu set ikon lengkap dengan 4964 ikon — siap untuk React, Next.js,
                     Remix, Qwik dan framework lainnya.
                 </p>
+                     <div className="flex justify-center items-center mb-7 gap-2">
+                    <div className="col-span-7 col-start-6">
+                        <pre className="bg-gray-900 text-yellow-300 rounded-lg p-4 text-sm overflow-x-auto">
+                            <code>{`npm install badrian-icon@latest`}</code>
+                        </pre>
+                    </div>
+                    <div className="col-span-7 col-start-6">
+                        <pre className="bg-gray-900 text-yellow-300 rounded-lg p-4 text-sm overflow-x-auto">
+                            <code>{`import { Aplex, Berrs } from "badrian-icon/food";`}</code>
+                        </pre>
+                    </div>
+                </div>
                 <PlaceholdersAndVanishInput
                     placeholders={placeholders}
                     onChange={handleChange}
@@ -142,40 +134,7 @@ const Index = () => {
                 />
             </div>
 
-            <Tabs
-                aria-label="Project categories"
-                selectedKey={selectedTabs}
-                onSelectionChange={(key) => setSelectedTabs(key.toString())}
-                className="flex justify-center mb-12"
-                variant="light"
-                color="primary"
-            >
 
-                <Tab key="Leonid-Tsvetkov" title="Leonid-Tsvetkov" onClick={() => {
-                    setKeyTabs(
-                        { id: "2", title: "Leonid-Tsvetkov", table: 731981, key: "Leonid-Tsvetkov" },
-                    )
-                    setPage(1)
-                }} />
-                <Tab key="Kryston-Schwarze" title="Kryston-Schwarze" onClick={() => {
-                    setKeyTabs(
-                        { id: "1", title: "Kryston-Schwarze", table: 737010, key: "Kryston-Schwarze" },
-                    )
-                    setPage(1)
-                }} />
-                <Tab key="bendera-Даниил" title="bendera-Даниил" onClick={() => {
-                    setKeyTabs(
-                        { id: "3", title: "bendera-Даниил", table: 732071, key: "bendera-Даниил" },
-                    )
-                    setPage(1)
-                }} />
-                <Tab key="Rounak-Bose-soscial" title="Rounak-Bose-soscial" onClick={() => {
-                    setKeyTabs(
-                        { id: "4", title: "Rounak-Bose-soscial", table: 732078, key: "Rounak-Bose-soscial" },
-                    )
-                    setPage(1)
-                }} />
-            </Tabs>
 
             <div className="mt-9 w-full px-3 m-auto">
                 <div className="grid grid-cols-10 gap-8">
@@ -203,7 +162,7 @@ const Index = () => {
 
                 </div>
                 {/* Pagination */}
-                <div className="p-4 flex justify-center items-center ">
+                <div className="p-4 flex justify-center items-center z-[9999] ">
                     <Pagination
                         totalPages={totalPages}
                         currentPage={page}

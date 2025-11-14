@@ -108,6 +108,21 @@ html {
 }
 
 
+@keyframes aurora {
+  0% {
+    background-position: 50% 50%, 50% 50%;
+  }
+  50% {
+    background-position: 50% 60%, 50% 40%;
+  }
+  100% {
+    background-position: 50% 50%, 50% 50%;
+  }
+}
+
+.animate-aurora {
+  animation: aurora 20s linear infinite;
+}
 
 
 

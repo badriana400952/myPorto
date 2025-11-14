@@ -30,6 +30,16 @@ const config = {
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui'],
       },
+      animation: {
+        aurora: "aurora 60s linear infinite",
+      },
+      keyframes: {
+        aurora: {
+          "0%": { "background-position": "50% 50%, 50% 50%" },
+          "50%": { "background-position": "350% 50%, 350% 50%" },
+          "100%": { "background-position": "50% 50%, 50% 50%" },
+        },
+      },
     },
   },
   plugins: [heroui()],

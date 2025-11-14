@@ -58,7 +58,7 @@ export default function Home() {
       weeklyDownloads: 42,
       stars: 2.572,
       npmUrl: "https://www.npmjs.com/package/badrian-icon",
-      repoUrl: "/badrian-icon",
+      repoUrl: "/components/Kriston",
     }
 
   ];
@@ -191,7 +191,7 @@ export default function Home() {
               href="/components/Introduction"
               className="font-medium"
             >
-              My Components
+              My Icons
             </Link>
           </NavbarItem>
         </NavbarContent>
