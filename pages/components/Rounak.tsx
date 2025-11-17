@@ -12,7 +12,7 @@ import {
 } from "@heroui/react";
 import { FC, SVGProps, useEffect, useState } from "react";
 import ReactDOMServer from "react-dom/server";
-import Pagination from "../badrian-icons/pagination";
+import Pagination from "./pagination";
 
 export interface IconItem {
     name: string;

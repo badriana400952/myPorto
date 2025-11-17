@@ -11,7 +11,7 @@ import {
 } from "@heroui/react";
 import { FC, SVGProps, useEffect, useState } from "react";
 import ReactDOMServer from "react-dom/server";
-import Pagination from "../badrian-icons/pagination";
+import Pagination from "./pagination";
 
 export interface IconItem {
     name: string;
@@ -34,7 +34,7 @@ const Index = () => {
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
-
+    
 
     const [iconName, setIconName] = useState<IconItem[]>([
         { name: "", icons: () => <svg></svg>, iconName: "" },
