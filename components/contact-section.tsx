@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardBody, Input, Textarea, Button } from "@heroui/react";
 import { Icon } from "@iconify/react";
-
+import emailjs from "emailjs-com";
 export const ContactSection: React.FC = () => {
   const [formState, setFormState] = React.useState({
     name: "",
@@ -21,26 +21,42 @@ export const ContactSection: React.FC = () => {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e?.preventDefault();
+    e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormState({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
+    emailjs
+      .send(
+        process.env.NEXT_PUBLIC_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_TEMPLATE_ID!,
+        {
+          from_name: formState.name,
+          from_email: formState.email,
+          subject: formState.subject,
+          message: formState.message,
+        },
+        process.env.NEXT_PUBLIC_PUBLIC_KEY!
+      )
+      .then(() => {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        setFormState({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
 
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 5000);
-    }, 1500);
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      })
+      .catch((error) => {
+        console.error("EmailJS Error:", error);
+        alert("Failed to send message. Please try again.");
+        setIsSubmitting(false);
+      });
   };
+
 
   const contactInfo = [
     {

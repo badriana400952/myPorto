@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { Inter } from "next/font/google";
+import { Npm } from "badrian-icon/logos";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -13,29 +14,32 @@ const Dokumentasi = () => {
     return (
         <div className={`max-w-8xl mx-auto p-5 z-[9999] mb-8 mt-10 ${inter.className}`}>
             {/* Header */}
-            <h1 className="text-4xl font-bold mb-4 text-gray-900"> Instalasi badrian-icon</h1>
+            <h1 className="text-4xl font-bold mb-4 text-gray-900"> Instalasi badrian-icon </h1>
             <p className="text-md mb-10 text-gray-600">
                 Koleksi ikon React ringan, konsisten, dan fleksibel untuk proyek modern seperti Next.js, Remix, atau Vite.
             </p>
-<div className={`max-w-8xl mx-auto p-5 z-[9999] mb-8 mt-10 ${inter.className}`}>
-    {/* Intro Monorepo */}
-    <div className="mb-10">
-        <p className="text-md text-gray-600">
-            <b>badrian-icon</b> dibuat menggunakan <b>monorepo</b>, sehingga setiap paket ikon dikelola secara 
-            terpisah. Pendekatan ini membuat <i>bundle</i> lebih ringan bagi konsumen karena hanya paket yang 
-            digunakan yang akan diimpor. Semua ikon tersedia sebagai <b>React components</b> yang langsung menggunakan 
-            SVG, tanpa bergantung pada runtime tambahan.
-        </p>
-    </div>
+            <div className={`max-w-8xl mx-auto p-5 z-[9999] mb-8 mt-10 ${inter.className}`}>
+                {/* Intro Monorepo */}
+                <div className="mb-10">
+                    <p className="text-md text-gray-600">
+                        <b>badrian-icon</b> dibuat menggunakan <b>monorepo</b>, sehingga setiap paket ikon dikelola secara
+                        terpisah. Pendekatan ini membuat <i>bundle</i> lebih ringan bagi konsumen karena hanya paket yang
+                        digunakan yang akan diimpor. Semua ikon tersedia sebagai <b>React components</b> yang langsung menggunakan
+                        SVG, tanpa bergantung pada runtime tambahan.
+                    </p>
+                </div>
 
-    {/* Header */}
-    <h1 className="text-4xl font-bold mb-4 text-gray-900"> Instalasi badrian-icon</h1>
-    <p className="text-md mb-10 text-gray-600">
-        Koleksi ikon React ringan, konsisten, dan fleksibel untuk proyek modern seperti Next.js, Remix, atau Vite.
-    </p>
+                {/* Header */}
+                <div className="w-full flex justify-start items-start gap-3">
+                    <h1 className="text-4xl font-bold mb-4 text-gray-900"> Instalasi badrian-icon </h1>
+                    <span className="cursor-pointer "> <a href="https://www.npmjs.com/package/badrian-icon" target="_blank"><Npm className="w-8 h-8" /></a> </span>
+                </div>
+                <p className="text-md mb-10 text-gray-600">
+                    Koleksi ikon React ringan, konsisten, dan fleksibel untuk proyek modern seperti Next.js, Remix, atau Vite.
+                </p>
 
-    {/* ... lanjutkan konten dokumentasi */}
-</div>
+                {/* ... lanjutkan konten dokumentasi */}
+            </div>
 
             {/* Section: Instalasi */}
             <div className="grid grid-cols-12 grid-rows-1 gap-1">
