@@ -96,12 +96,17 @@ export default function Home() {
           property="og:image"
           content="https://my-porto-delta-six.vercel.app/preview.jpg"
         />
+        <meta
+          name="keywords"
+          content="badrian icon, badrian-icon, badrian icons, ikon badrian, badrianicon, npm badrian icon"
+        />
+
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Jasa Pembuatan Website | Badri Web Studio"
+          content="Jasa Pembuatan Website, Web Developer | Badri Web Studio"
         />
         <meta
           name="twitter:description"
@@ -123,7 +128,7 @@ export default function Home() {
               url: "https://my-porto-delta-six.vercel.app/",
               sameAs: [
                 "https://github.com/badriana400952",
-                "https://www.linkedin.com/in/namalinkedinmu", // ganti jika ada
+                "https://www.linkedin.com/in/badriana-badrian/",
               ],
               jobTitle: "Frontend Developer",
               worksFor: {
@@ -133,6 +138,33 @@ export default function Home() {
             }),
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareSourceCode",
+              name: "badrian-icon",
+              description: "Koleksi icon minimalis untuk React dan proyek web.",
+              url: "https://www.npmjs.com/package/badrian-icon",
+              codeRepository: "https://www.npmjs.com/package/badrian-icon",
+              programmingLanguage: "JavaScript",
+              keywords: [
+                "badrian icon",
+                "badrian-icon",
+                "badrian icons",
+                "ikon badrian",
+                "react icons",
+                "npm icon library"
+              ],
+              author: {
+                "@type": "Person",
+                name: "Badriana",
+              },
+            }),
+          }}
+        />
+
       </Head>
 
       {/* Navigation */}

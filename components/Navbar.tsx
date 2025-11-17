@@ -31,7 +31,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
         <Link href="/" className="text-black dark:text-white">
           <div className="flex items-center gap-3 mb-8">
             <Image
-              src="/logos.jpeg"
+              src="/logos2.png"
               alt="Logo"
               width={32}
               height={32}
