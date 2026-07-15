@@ -17,6 +17,7 @@ import { ProjectsSection } from "../components/projects-section";
 import { SkillsSection } from "../components/skills-section";
 import { TestimonialsSection } from "../components/testimonials-section";
 import { ThemeSwitcher } from "../components/theme-switcher";
+import { IconPlayground } from "../components/IconPlayground";
 
 export default function Home() {
   const packages = [
@@ -167,84 +168,52 @@ export default function Home() {
 
       </Head>
 
-      {/* Navigation */}
-      <Navbar
-        maxWidth="xl"
-        className="bg-background/70 backdrop-blur-md border-b border-divider"
-      >
-        <NavbarBrand>
-          <p className="font-bold text-xl text-inherit">
-            Badriana<span className="text-primary">.dev</span>
-          </p>
-        </NavbarBrand>
-        <NavbarContent className="hidden sm:flex gap-6" justify="center">
-          <NavbarItem>
-            <Link color="foreground" href="#home" className="font-medium">
-              Home
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="#about" className="font-medium">
-              About
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="#projects" className="font-medium">
-              Projects
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="#skills" className="font-medium">
-              Skills
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="#package" className="font-medium">
-              Package
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link
-              color="foreground"
-              href="#testimonials"
-              className="font-medium"
-            >
-              Testimonials
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="#gallery" className="font-medium">
-              Galery
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link
-              color="foreground"
-              href="/components/Introduction"
-              className="font-medium"
-            >
-              My Icons
-            </Link>
-          </NavbarItem>
-        </NavbarContent>
-        <NavbarContent justify="end">
-          <NavbarItem className="mr-4">
-            <ThemeSwitcher />
-          </NavbarItem>
-          {/* <NavbarItem>
-            <Button
-              as={Link}
-              color="primary"
-              href="#contact"
-              variant="flat"
-              className="font-medium"
-              endContent={<Icon icon="lucide:arrow-right" width={16} />}
-            >
-              Contact Me
-            </Button>
-          </NavbarItem> */}
-        </NavbarContent>
-      </Navbar>
+      {/* Floating Cyber HUD Navigation */}
+      <div className="sticky top-4 inset-x-0 z-50 max-w-6xl mx-auto px-4">
+        <Navbar
+          maxWidth="xl"
+          className="rounded-full border border-slate-200/50 dark:border-slate-800/50 bg-white/75 dark:bg-slate-950/40 backdrop-blur-md shadow-lg shadow-slate-100/10 dark:shadow-none h-14"
+        >
+          <NavbarBrand className="gap-2">
+            <p className="font-extrabold text-lg tracking-tight text-slate-900 dark:text-white">
+              Badriana<span className="text-cyan-500">.dev</span>
+            </p>
+            {/* Active system heartbeat */}
+            <span className="flex h-2 w-2 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+          </NavbarBrand>
+          
+          <NavbarContent className="hidden lg:flex gap-6" justify="center">
+            {[
+              { label: "Home", href: "#home" },
+              { label: "About", href: "#about" },
+              { label: "Projects", href: "#projects" },
+              { label: "Skills", href: "#skills" },
+              { label: "Packages", href: "#package" },
+              { label: "Testimonials", href: "#testimonials" },
+              { label: "Gallery", href: "#gallery" },
+              { label: "My Icons", href: "/components/Introduction" }
+            ].map((nav, idx) => (
+              <NavbarItem key={idx}>
+                <Link 
+                  href={nav.href} 
+                  className="text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors"
+                >
+                  {nav.label}
+                </Link>
+              </NavbarItem>
+            ))}
+          </NavbarContent>
+          
+          <NavbarContent justify="end">
+            <NavbarItem>
+              <ThemeSwitcher />
+            </NavbarItem>
+          </NavbarContent>
+        </Navbar>
+      </div>
 
       {/* Main Content */}
       <main className="container mx-auto px-4 md:px-6">
@@ -253,15 +222,18 @@ export default function Home() {
         <ProjectsSection />
         <SkillsSection />
         {/* <GlowingEffectPage /> */}
-        <div className="">
-          <h1 className="text-4xl font-bold mb-8 text-center text-gray-500">
+        <div id="package" className="py-20 md:py-32 relative">
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-4 text-center bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
             📦 My NPM Packages
-          </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-4">
+          </h2>
+          <div className="w-16 h-1 bg-cyan-500 mx-auto rounded-full mb-12" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {packages.map((pkg) => (
               <NpmPackageCard key={pkg.name} {...pkg} />
             ))}
           </div>
+          {/* Interactive Playground sandbox */}
+          <IconPlayground />
         </div>
 
         <TestimonialsSection />
