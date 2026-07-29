@@ -1,254 +1,219 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Inter } from "next/font/google";
 import { Npm } from "badrian-icon/logos";
+import { IconPlayground } from "@/components/IconPlayground";
 
 const inter = Inter({
-    subsets: ["latin"],
-    display: "swap",
+  subsets: ["latin"],
+  display: "swap",
 });
-const Dokumentasi = () => {
 
+export default function Dokumentasi() {
+  const [copiedSection, setCopiedSection] = useState<string | null>(null);
+  const [packageManager, setPackageManager] = useState<"npm" | "yarn" | "pnpm" | "bun">("npm");
 
+  const copyToClipboard = (text: string, sectionId: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedSection(sectionId);
+    setTimeout(() => setCopiedSection(null), 2000);
+  };
 
-    return (
-        <div className={`max-w-8xl mx-auto p-5 z-[9999] mb-8 mt-10 ${inter.className}`}>
-            {/* Header */}
-            <h1 className="text-4xl font-bold mb-4 text-gray-900"> Instalasi badrian-icon </h1>
-            <p className="text-md mb-10 text-gray-600">
-                Koleksi ikon React ringan, konsisten, dan fleksibel untuk proyek modern seperti Next.js, Remix, atau Vite.
-            </p>
-            <div className={`max-w-8xl mx-auto p-5 z-[9999] mb-8 mt-10 ${inter.className}`}>
-                {/* Intro Monorepo */}
-                <div className="mb-10">
-                    <p className="text-md text-gray-600">
-                        <b>badrian-icon</b> dibuat menggunakan <b>monorepo</b>, sehingga setiap paket ikon dikelola secara
-                        terpisah. Pendekatan ini membuat <i>bundle</i> lebih ringan bagi konsumen karena hanya paket yang
-                        digunakan yang akan diimpor. Semua ikon tersedia sebagai <b>React components</b> yang langsung menggunakan
-                        SVG, tanpa bergantung pada runtime tambahan.
-                    </p>
-                </div>
+  const getInstallCmd = () => {
+    switch (packageManager) {
+      case "yarn":
+        return "yarn add badrian-icon@latest";
+      case "pnpm":
+        return "pnpm add badrian-icon@latest";
+      case "bun":
+        return "bun add badrian-icon@latest";
+      default:
+        return "npm install badrian-icon@latest";
+    }
+  };
 
-                {/* Header */}
-                <div className="w-full flex justify-start items-start gap-3">
-                    <h1 className="text-4xl font-bold mb-4 text-gray-900"> Instalasi badrian-icon </h1>
-                    <span className="cursor-pointer "> <a href="https://www.npmjs.com/package/badrian-icon" target="_blank"><Npm className="w-8 h-8" /></a> </span>
-                </div>
-                <p className="text-md mb-10 text-gray-600">
-                    Koleksi ikon React ringan, konsisten, dan fleksibel untuk proyek modern seperti Next.js, Remix, atau Vite.
-                </p>
+  const tailwindCode = `module.exports = {\n  content: [\n    "./src/**/*.{js,ts,jsx,tsx}",\n    "./node_modules/badrian-icon/**/*.js"\n  ],\n  safelist: [\n    {\n      pattern: /(bg|text|border)-(red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose|slate|gray|zinc|neutral|stone)-(50|100|200|300|400|500|600|700|800|900|950)/,\n    },\n  ],\n  theme: { extend: {} },\n  plugins: [],\n}`;
 
-                {/* ... lanjutkan konten dokumentasi */}
-            </div>
+  const usageCode = `import { Add, Trash } from "badrian-icon/kriston";\nimport { Edit } from "badrian-icon/leonid";\n\nexport default function Example() {\n  return (\n    <div className="flex items-center gap-4">\n      <Add className="w-6 h-6 text-emerald-500" />\n      <Edit className="w-6 h-6 text-cyan-500" />\n      <Trash className="w-6 h-6 text-rose-500" />\n    </div>\n  );\n}`;
 
-            {/* Section: Instalasi */}
-            <div className="grid grid-cols-12 grid-rows-1 gap-1">
-                <div className="flex justify-center items-start"><p>01</p></div>
-                <div className="col-span-4">
-                    <h2 className="text-2xl font-semibold mb-3 text-gray-900"> Instalasi</h2>
-                    <p className="mb-3 text-gray-600">Pilih salah satu metode instalasi </p>
-                </div>
-                <div className="col-span-7 col-start-6">
-                    <pre className="bg-gray-900 text-green-400 rounded-lg p-4 text-sm overflow-x-auto">
-                        <code>{`npm install badrian-icon
-# atau
-yarn add badrian-icon
-# atau
-pnpm add badrian-icon`}</code>
-                    </pre>
-                </div>
-            </div>
-
-
-
-
-            <div className="grid grid-cols-12 grid-rows-1 mt-12 gap-4">
-                <div className="flex justify-center items-start"><p>02</p></div>
-                <div className="col-span-4">
-                    <h2 className="text-2xl font-semibold mb-3 text-gray-900"> Konfigurasi  </h2>
-                    <p className="mb-3 text-gray-600">
-                        Gunakan <b>Tailwind CSS</b>, tambahkan direktori <code>badrian-icon</code> ke dalam file{" "}
-                        <code>tailwind.config.js</code>:
-                    </p>
-                </div>
-                <div className="col-span-7 col-start-6">
-                    <pre className="bg-gray-900 mb-6 text-blue-400 rounded-lg p-4 text-sm overflow-x-auto">
-                        <code>{`npm install -D tailwindcss postcss autoprefixer
-`}</code>
-                    </pre>
-                    <pre className="bg-gray-900 text-blue-400 rounded-lg p-4 text-sm overflow-x-auto">
-                        <code>{`module.exports = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/badrian-icon/**/*.js"
-  ],
-     safelist: [
-    {
-      pattern:
-        /(bg|text|border)-(red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|
-        blue|indigo|violet|purple|fuchsia|pink|rose|slate|gray|zinc|neutral|stone)-(50|100
-        |200|300|400|500|600|700|800|900|950)/,
-    },
-  ],
-  theme: { extend: {} },
-  plugins: [],
-}`}</code>
-                    </pre>
-                </div>
-            </div>
-
-
-            <div className="grid grid-cols-12 grid-rows-1 mt-12 gap-4">
-                <div className="flex justify-center items-start"><p>03</p></div>
-                <div className="col-span-4">
-                    <h2 className="text-2xl font-semibold mb-3 text-gray-900"> Cara Menggunakan</h2>
-                    <p className="mb-3 text-gray-600">Import ikon langsung dari package:</p>
-                </div>
-                <div className="col-span-7 col-start-6">
-                    <pre className="bg-gray-900 text-yellow-300 rounded-lg p-4 text-sm overflow-x-auto">
-                        <code>{`import { Add, Trash } from "badrian-icon/kriston";
-import { Edit  } from "badrian-icon/leonid";
-
-export default function Example() {
   return (
-    <div className="flex items-center gap-4">
-      <Add className="w-6 h-6 text-green-600" />
-      <Edit className="w-6 h-6 text-blue-600" />
-      <Trash className="w-6 h-6 text-red-600" />
+    <div className={`w-full max-w-6xl mx-auto p-4 sm:p-8 text-slate-900 dark:text-slate-100 ${inter.className}`}>
+      {/* Hero Banner */}
+      <div className="relative bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-white/10 rounded-3xl p-6 sm:p-12 mb-12 shadow-xl backdrop-blur-2xl overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-emerald-500/10 via-cyan-500/10 to-transparent blur-3xl rounded-full pointer-events-none"></div>
+
+        <div className="flex flex-wrap items-center gap-3 mb-4">
+          <span className="px-3.5 py-1 text-xs font-bold rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 tracking-wide uppercase">
+            NPM Package v2.1.26
+          </span>
+          <span className="px-3.5 py-1 text-xs font-bold rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 tracking-wide uppercase">
+            TypeScript & React 19 Ready
+          </span>
+        </div>
+
+        <div className="flex flex-wrap items-center justify-between gap-6">
+          <div className="max-w-2xl">
+            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">
+              Instalasi badrian-icon
+            </h1>
+            <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
+              Koleksi ikon React ultra-ringan, presisi, dan sepenuhnya disesuaikan untuk Next.js 15, Remix, Vite, atau Tailwind CSS.
+            </p>
+          </div>
+          <a
+            href="https://www.npmjs.com/package/badrian-icon"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-3 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-800 dark:from-white dark:to-slate-100 hover:opacity-90 transition-all text-white dark:text-slate-900 font-bold text-sm shadow-xl hover:scale-[1.02]"
+          >
+            <Npm className="w-8 h-8" />
+            <span>Lihat di NPM</span>
+          </a>
+        </div>
+      </div>
+
+      {/* Feature Bento Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        <div className="p-6 sm:p-8 rounded-3xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-white/10 shadow-lg backdrop-blur-md hover:border-emerald-500/50 transition-all group">
+          <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-xl mb-5 group-hover:scale-110 transition-transform">
+            ⚡
+          </div>
+          <h3 className="text-lg font-extrabold text-slate-900 dark:text-white mb-2">Zero Runtime</h3>
+          <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+            Semua ikon berbasis komponen SVG React murni tanpa dependensi JavaScript tambahan yang memperlambat browser.
+          </p>
+        </div>
+
+        <div className="p-6 sm:p-8 rounded-3xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-white/10 shadow-lg backdrop-blur-md hover:border-cyan-500/50 transition-all group">
+          <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center font-bold text-xl mb-5 group-hover:scale-110 transition-transform">
+            📦
+          </div>
+          <h3 className="text-lg font-extrabold text-slate-900 dark:text-white mb-2">Tree-Shakeable</h3>
+          <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+            Dikelola dengan modul monorepo terpisah sehingga hanya ikon yang Anda gunakan yang masuk ke bundle produksi.
+          </p>
+        </div>
+
+        <div className="p-6 sm:p-8 rounded-3xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-white/10 shadow-lg backdrop-blur-md hover:border-violet-500/50 transition-all group">
+          <div className="w-12 h-12 rounded-2xl bg-violet-500/10 text-violet-600 dark:text-violet-400 flex items-center justify-center font-bold text-xl mb-5 group-hover:scale-110 transition-transform">
+            🎨
+          </div>
+          <h3 className="text-lg font-extrabold text-slate-900 dark:text-white mb-2">Tailwind Native</h3>
+          <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+            Langsung mendukung utility class Tailwind CSS untuk warna, ukuran, dan animasi seperti <code className="text-emerald-600 dark:text-emerald-400 font-mono">text-emerald-500 w-6 h-6</code>.
+          </p>
+        </div>
+      </div>
+
+      {/* Interactive Quickstart Steps */}
+      <div className="space-y-10">
+        {/* Step 01 */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 sm:p-8 rounded-3xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-white/10 shadow-lg">
+          <div className="lg:col-span-4 space-y-2">
+            <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">
+              Langkah 01
+            </span>
+            <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">Instalasi Package</h2>
+            <p className="text-slate-600 dark:text-slate-400 text-sm">
+              Pilih package manager proyek Anda dan jalankan perintah instalasi di terminal.
+            </p>
+          </div>
+
+          <div className="lg:col-span-8 flex flex-col justify-between">
+            {/* Package Manager Tabs */}
+            <div className="flex items-center gap-2 mb-3">
+              {(["npm", "yarn", "pnpm", "bun"] as const).map((pm) => (
+                <button
+                  key={pm}
+                  onClick={() => setPackageManager(pm)}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold font-mono transition-all ${
+                    packageManager === pm
+                      ? "bg-emerald-500 text-white shadow-md shadow-emerald-500/20"
+                      : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                  }`}
+                >
+                  {pm}
+                </button>
+              ))}
+            </div>
+
+            {/* Code Box */}
+            <div className="relative group">
+              <button
+                onClick={() => copyToClipboard(getInstallCmd(), "step1")}
+                className="absolute top-3.5 right-3.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 transition-all cursor-pointer z-10"
+              >
+                {copiedSection === "step1" ? "✓ Copied!" : "Copy"}
+              </button>
+              <pre className="bg-slate-950 text-emerald-400 rounded-2xl p-5 text-sm overflow-x-auto border border-slate-800 font-mono shadow-inner">
+                <code>{getInstallCmd()}</code>
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        {/* Step 02 */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 sm:p-8 rounded-3xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-white/10 shadow-lg">
+          <div className="lg:col-span-4 space-y-2">
+            <span className="text-xs font-bold text-cyan-600 dark:text-cyan-400 tracking-wider uppercase">
+              Langkah 02
+            </span>
+            <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">Konfigurasi Tailwind CSS</h2>
+            <p className="text-slate-600 dark:text-slate-400 text-sm">
+              Tambahkan path <code className="text-cyan-600 dark:text-cyan-400 font-mono">badrian-icon</code> ke dalam <code className="text-slate-800 dark:text-slate-200 font-mono">tailwind.config.js</code> agar warna dan dynamic class terdeteksi secara otomatis.
+            </p>
+          </div>
+
+          <div className="lg:col-span-8 relative">
+            <button
+              onClick={() => copyToClipboard(tailwindCode, "step2")}
+              className="absolute top-3.5 right-3.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-600 dark:text-cyan-400 border border-cyan-500/30 transition-all cursor-pointer z-10"
+            >
+              {copiedSection === "step2" ? "✓ Copied!" : "Copy"}
+            </button>
+            <pre className="bg-slate-950 text-cyan-300 rounded-2xl p-5 text-sm overflow-x-auto border border-slate-800 font-mono shadow-inner">
+              <code>{tailwindCode}</code>
+            </pre>
+          </div>
+        </div>
+
+        {/* Step 03 */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 sm:p-8 rounded-3xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-white/10 shadow-lg">
+          <div className="lg:col-span-4 space-y-2">
+            <span className="text-xs font-bold text-amber-600 dark:text-amber-400 tracking-wider uppercase">
+              Langkah 03
+            </span>
+            <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">Penggunaan Komponen</h2>
+            <p className="text-slate-600 dark:text-slate-400 text-sm">
+              Impor ikon yang Anda butuhkan langsung dari sub-module library (seperti <code className="text-amber-600 dark:text-amber-400 font-mono">/kriston</code>, <code className="text-amber-600 dark:text-amber-400 font-mono">/leonid</code>, dll).
+            </p>
+          </div>
+
+          <div className="lg:col-span-8 relative">
+            <button
+              onClick={() => copyToClipboard(usageCode, "step3")}
+              className="absolute top-3.5 right-3.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-600 dark:text-amber-400 border border-amber-500/30 transition-all cursor-pointer z-10"
+            >
+              {copiedSection === "step3" ? "✓ Copied!" : "Copy"}
+            </button>
+            <pre className="bg-slate-950 text-amber-300 rounded-2xl p-5 text-sm overflow-x-auto border border-slate-800 font-mono shadow-inner">
+              <code>{usageCode}</code>
+            </pre>
+          </div>
+        </div>
+      </div>
+
+      {/* Embedded Live Playground */}
+      <div className="mt-16">
+        <IconPlayground />
+      </div>
+
+      {/* License Footer */}
+      <div className="mt-16 text-center border-t border-slate-200 dark:border-white/10 pt-8">
+        <p className="text-slate-500 dark:text-slate-400 text-sm">
+          <b>badrian-icon</b> dirilis di bawah lisensi <b>MIT</b> — Bebas digunakan untuk proyek pribadi maupun komersial.
+        </p>
+      </div>
     </div>
   );
-}`}</code>
-                    </pre>
-                </div>
-            </div>
-
-
-            <div className="grid grid-cols-12 grid-rows-1  mt-12 gap-4">
-                <div className="flex justify-center items-start"><p>04</p></div>
-
-                <div className="col-span-4">
-                    <h2 className="text-2xl font-semibold mb-3 text-gray-900"> Kustomisasi</h2>
-
-                </div>
-                <div className="col-span-7 col-start-6">
-                    <div className="space-y-6">
-                        <div>
-                            <h3 className="font-semibold text-lg mb-2 text-gray-800">1️ Ukuran</h3>
-                            <pre className="bg-gray-900 text-yellow-300 rounded-lg p-4 text-sm">
-                                <code>{`<Add className="w-10 h-10" />`}</code>
-                            </pre>
-                        </div>
-
-                        <div>
-                            <h3 className="font-semibold text-lg mb-2 text-gray-800"> Warna</h3>
-                            <pre className="bg-gray-900 text-yellow-300 rounded-lg p-4 text-sm">
-                                <code>{`<Trash className="text-red-500" />`}</code>
-                            </pre>
-                        </div>
-
-                        <div>
-                            <h3 className="font-semibold text-lg mb-2 text-gray-800">3️ Warna Kustom (tanpa Tailwind)</h3>
-                            <pre className="bg-gray-900 text-yellow-300 rounded-lg p-4 text-sm">
-                                <code>{`<Edit style={{ color: "#f59e0b", width: 32, height: 32 }} />`}</code>
-                            </pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div className="grid grid-cols-12 grid-rows-1  mt-12 gap-4">
-                <div className="flex justify-center items-start"><p>05</p></div>
-
-                <div className="col-span-4">
-                    <h2 className="text-2xl font-semibold mb-3 text-gray-900"> Penggunaan Dinamis</h2>
-                    <p className="mb-3 text-gray-600">Render ikon berdasarkan nama secara dinamis:</p>
-                </div>
-                <div className="col-span-7 col-start-6">
-                    <pre className="bg-gray-900 text-yellow-300 rounded-lg p-4 text-sm overflow-x-auto">
-                        <code>{`import * as Icons from "badrian-icon";
-
-export default function DynamicExample({ iconName = "Add" }) {
-  const IconComponent = Icons[iconName];
-  return <IconComponent className="w-8 h-8 text-blue-500" />;
-}`}</code>
-                    </pre>
-                </div>
-            </div>
-
-
-            <div className="grid grid-cols-12 grid-rows-1  mt-12 gap-4">
-                <div className="flex justify-center items-start"><p>06</p></div>
-
-                <div className="col-span-4">
-                    <h2 className="text-2xl font-semibold mb-3 text-gray-900"> Integrasi Next.js</h2>
-
-                </div>
-                <div className="col-span-7 col-start-6">
-                    <pre className="bg-gray-900 text-yellow-300 rounded-lg p-4 text-sm overflow-x-auto">
-                        <code>{`"use client";
-import { ArrowRight } from "badrian-icon";
-
-export default function ButtonNext() {
-  return (
-    <button className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg">
-      Next
-      <ArrowRight className="w-5 h-5" />
-    </button>
-  );
-}`}</code>
-                    </pre>
-                </div>
-            </div>
-
-
-
-            <div className="grid grid-cols-12 grid-rows-1 mt-12 gap-4">
-                <div className="flex justify-center items-start"><p>07</p></div>
-
-                <div className="col-span-4">
-                    <h2 className="text-2xl font-semibold mb-3 text-gray-900"> Contoh Tambahan</h2>
-
-                </div>
-                <div className="col-span-7 col-start-6">
-                    <div className="space-y-6">
-                        <div>
-                            <h3 className="font-semibold mb-2 text-gray-800">Button dengan Ikon</h3>
-                            <pre className="bg-gray-900 text-yellow-300 rounded-lg p-4 text-sm">
-                                <code>{`import { Save } from "badrian-icon";
-
-<button className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-md">
-  <Save className="w-5 h-5" />
-  Simpan
-</button>`}</code>
-                            </pre>
-                        </div>
-
-                        <div>
-                            <h3 className="font-semibold mb-2 text-gray-800">Input dengan Ikon</h3>
-                            <pre className="bg-gray-900 text-yellow-300 rounded-lg p-4 text-sm">
-                                <code>{`import { Search } from "badrian-icon";
-
-<div className="flex items-center border rounded-md px-3 py-2">
-  <Search className="w-5 h-5 text-gray-400" />
-  <input type="text" placeholder="Cari ikon..." className="ml-2 outline-none" />
-</div>`}</code>
-                            </pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Section: Lisensi */}
-            <section>
-                <h2 className="text-2xl font-semibold mb-3 text-gray-900"> Lisensi</h2>
-                <p className="text-gray-600">
-                    <b>badrian-icon</b> dirilis di bawah lisensi <b>MIT</b> — bebas digunakan untuk proyek pribadi maupun
-                    komersial.
-                </p>
-            </section>
-        </div>
-    );
-};
-
-export default Dokumentasi;
+}

@@ -7,240 +7,274 @@ import {
   ModalHeader,
   Modal as Modlas,
   ModalBody as ModlasBodys,
-  useDisclosure
+  useDisclosure,
 } from "@heroui/react";
+import { motion } from "framer-motion";
 import { FC, SVGProps, useEffect, useState } from "react";
 import ReactDOMServer from "react-dom/server";
 import Pagination from "./pagination";
 
 export interface IconItem {
-    name: string;
-    icons: FC<SVGProps<SVGSVGElement>>;
-    iconName: string;
-}
-interface IconItemFromBaserow {
-    name: string;
-    icons: string;
-    iconName: string;
-}
-export interface Iselected {
-    color: string | null;
-    shade: number | null;
+  name: string;
+  icons: FC<SVGProps<SVGSVGElement>>;
+  iconName: string;
 }
 
+interface IconItemFromBaserow {
+  name: string;
+  icons: string;
+  iconName: string;
+}
 
 const Index = () => {
-    const [icons, setIcons] = useState<IconItem[]>([]);
-    const [search, setSearch] = useState("");
-    const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(0);
-    
+  const [icons, setIcons] = useState<IconItem[]>([]);
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
-    const [iconName, setIconName] = useState<IconItem[]>([
-        { name: "", icons: () => <svg></svg>, iconName: "" },
-    ]);
+  const [iconName, setIconName] = useState<IconItem[]>([
+    { name: "", icons: () => <svg></svg>, iconName: "" },
+  ]);
 
+  const [copiedType, setCopiedType] = useState<"jsx" | "svg" | null>(null);
 
+  const {
+    isOpen: isIconModalOpen,
+    onOpen: onIconOpen,
+    onOpenChange: onIconOpenChange,
+  } = useDisclosure();
 
-    const {
-        isOpen: isIconModalOpen,
-        onOpen: onIconOpen,
-        onOpenChange: onIconOpenChange,
-    } = useDisclosure();
+  const token = process.env.NEXT_PUBLIC_BASEROW_TOKEN!;
 
- 
-
-    const token = process.env.NEXT_PUBLIC_BASEROW_TOKEN!;
-    useEffect(() => {
-        const handleGet = async () => {
-            const res = await fetch(
-                `https://api.baserow.io/api/database/rows/table/732071/?user_field_names=true&page=${page}&filter__name__contains=${search}`,
-                {
-                    headers: { Authorization: `Token ${token}` },
-                }
-            );
-            const data = await res.json();
-            const mappedIcons: IconItem[] = data.results.map((item: IconItemFromBaserow) => {
-                let Component: FC<SVGProps<SVGSVGElement>> | null = null;
-                Component = mapBendera[item.icons as keyof typeof mapBendera];
-                return { name: item.name, icons: Component || (() => <svg />), iconName: item.icons };
-            });
-            setTotalPages(data.count / 100);
-            setIcons(mappedIcons);
-        };
-
-        handleGet();
-    }, [page, token, search ]);
-
-
-
-
-    const placeholders = [
-        "Cari ikon untuk proyekmu...",
-        "Apa ikon terbaik untuk tombol hapus?",
-        "Tampilkan ikon bergaya duotone...",
-        "Butuh ikon dengan gaya minimalis?",
-        "Temukan ikon untuk dashboard kamu...",
-        "Yaudah terserah...",
-    ];
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearch(e.target.value);
-        if (e.target.value) {
-            setPage(1);
+  useEffect(() => {
+    const handleGet = async () => {
+      try {
+        const res = await fetch(
+          `https://api.baserow.io/api/database/rows/table/732071/?user_field_names=true&page=${page}&filter__name__contains=${search}`,
+          {
+            headers: { Authorization: `Token ${token}` },
+          }
+        );
+        const data = await res.json();
+        if (data.results) {
+          const mappedIcons: IconItem[] = data.results.map(
+            (item: IconItemFromBaserow) => {
+              let Component: FC<SVGProps<SVGSVGElement>> | null = null;
+              Component =
+                mapBendera[item.icons as keyof typeof mapBendera];
+              return {
+                name: item.name,
+                icons: Component || (() => <svg />),
+                iconName: item.icons,
+              };
+            }
+          );
+          setTotalPages(Math.ceil(data.count / 100));
+          setIcons(mappedIcons);
         }
+      } catch (err) {
+        console.error("Failed to fetch icons", err);
+      }
     };
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setSearch("");
-    };
+    handleGet();
+  }, [page, token, search]);
 
-    return (
-        <div className="max-w-8xl p-5 container mx-auto mb-8  ">
-            <div className="h-[20rem] flex flex-col justify-center items-center">
-                <h2 className="mt-5 text-xl text-center sm:text-5xl dark:text-white text-black">
-                    Satu Set Ikon untuk Setiap Proyek 
-                </h2>
-                <p className="w-4xl mt-3 mb-10 text-center text-sm text-gray-600">
-                    Satu set ikon lengkap dengan 4964 ikon — siap untuk React, Next.js,
-                    Remix, Qwik dan framework lainnya.
-                </p>
-                 <div className="flex justify-center items-center mb-7 gap-2">
-                    <div className="col-span-7 col-start-6">
-                        <pre className="bg-gray-900 text-yellow-300 rounded-lg p-4 text-sm overflow-x-auto">
-                            <code>{`npm install badrian-icon@latest`}</code>
-                        </pre>
-                    </div>
-                    <div className="col-span-7 col-start-6">
-                        <pre className="bg-gray-900 text-yellow-300 rounded-lg p-4 text-sm overflow-x-auto">
-                            <code>{`import { AC, ID } from "badrian-icon/bendera";`}</code>
-                        </pre>
-                    </div>
-                </div>
-                <PlaceholdersAndVanishInput
-                    placeholders={placeholders}
-                    onChange={handleChange}
-                    onSubmit={onSubmit}
-                />
-            </div>
+  const placeholders = [
+    "Cari bendera negara (e.g. Indonesia, Japan, USA)...",
+    "Ketik nama negara...",
+    "Temukan ikon bendera kualitas tinggi...",
+  ];
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+    if (e.target.value) {
+      setPage(1);
+    }
+  };
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
 
-            <div className="mt-9 w-full px-3 m-auto">
-                <div className="grid grid-cols-10 gap-8">
-                    {icons.map((item, index) => {
-                        return (
-                            <div
-                                key={index}
-                                className="relative bg-gradient-to-b from-white/60 to-white/10 backdrop-blur-xl brightness-110 border border-white/30 rounded-xl shadow-inner overflow-hidden"
-                            >
-                                <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/30 to-transparent opacity-40"></div>
-                                <div
-                                    className="relative p-6 text-gray-800 font-semibold cursor-pointer"
-                                    onClick={() => {
-                                        onIconOpen();
-                                        setIconName([{ name: item.name, icons: item.icons, iconName: item.iconName }]);
-                                    }}
-                                >
-                                    <item.icons
-                                        className={`w-9 h-9 `}
-                                    />
-                                </div>
-                            </div>
-                        );
-                    })}
+  const handleCopy = (text: string, type: "jsx" | "svg") => {
+    navigator.clipboard.writeText(text);
+    setCopiedType(type);
+    setTimeout(() => setCopiedType(null), 2000);
+  };
 
-                </div>
-                {/* Pagination */}
-                <div className="p-4 flex justify-center items-center z-[9999] ">
-                    <Pagination
-                        totalPages={totalPages}
-                        currentPage={page}
-                        onPageChange={setPage}
-                    />
-                </div>
-            </div>
+  return (
+    <div className="w-full max-w-7xl mx-auto p-4 sm:p-8 text-slate-900 dark:text-slate-100 min-h-screen">
+      {/* Hero Search Header Card */}
+      <div className="relative bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-white/10 rounded-3xl p-6 sm:p-12 mb-10 text-center backdrop-blur-2xl shadow-xl overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-emerald-500/10 blur-3xl rounded-full pointer-events-none"></div>
 
+        <span className="inline-block px-3.5 py-1 text-xs font-bold rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 mb-4 tracking-wide uppercase">
+          Flag Icon Collection
+        </span>
 
-            <Modlas isOpen={isIconModalOpen} onOpenChange={onIconOpenChange} size="4xl">
-                <ModalContents>
-                    {() => (
-                        <>
-                            <ModalHeader className="flex flex-col gap-1">
-                                {iconName[0]?.name}
-                            </ModalHeader>
+        <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3">
+          Country Flag Explorer
+        </h1>
 
-                            <ModlasBodys>
-                                {iconName.map((item, index) => {
-                                    const IconComponent = item.icons;
-                                    const iconNameText = item.iconName || "Icon";
-                                    const iconCode = `<${iconNameText} className={"w-8 h-8"} />`;
+        <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-2xl mx-auto mb-8">
+          Koleksi ikon bendera negara terlengkap untuk bahasa, lokalisasi, dan pemilih wilayah aplikasi.
+        </p>
 
-                                    const svgString = ReactDOMServer.renderToStaticMarkup(
-                                        <IconComponent
-                                            className={`w-8 h-8`}
-                                        />
-                                    );
-
-                                    return (
-                                        <div
-                                            key={index}
-                                            className="overflow-hidden relative bg-gradient-to-b mb-7 from-white/60 to-white/10 backdrop-blur-xl brightness-110 border border-white/30 rounded-xl shadow-inner"
-                                        >
-                                            <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/30 to-transparent opacity-40"></div>
-
-                                            <div className="flex justify-start w-full items-start">
-                                                <div className="relative p-6 text-gray-800 font-semibold cursor-pointer">
-                                                    <IconComponent
-                                                        className={`w-40 h-40 border-4 border-gray-300 rounded-xl `}
-                                                    />
-                                                </div>
-
-                                                <div className="z-10 w-full mt-7 text-center space-y-2 overflow-auto">
-                                                    <CodeBlock
-                                                        language="jsx"
-                                                        filename={`${iconNameText}.jsx`}
-                                                        highlightLines={[1]}
-                                                        code={iconCode}
-                                                    />
-
-                                                    <p className="text-xs text-gray-500 italic">
-                                                        Ini contoh penggunaan ikon{" "}
-                                                        <span className="font-medium text-gray-700">
-                                                            {iconNameText}
-                                                        </span>{" "}
-                                                        — kamu bisa ubah warna dan ukuran sesukamu!
-                                                    </p>
-
-                                                    <p className="text-xs mt-8 text-gray-500 italic">
-                                                        Gunakan SVG saja
-                                                    </p>
-                                                    <CodeBlock
-                                                        language="html"
-                                                        filename={`${iconNameText}.svg`}
-                                                        highlightLines={[1]}
-                                                        code={svgString}
-                                                    />
-
-                                                  
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </ModlasBodys>
-                        </>
-                    )}
-                </ModalContents>
-            </Modlas>
-
-            {/* Tombol Warna & Modal Warna */}
-
-      
-
-
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+          <code className="px-4 py-2 rounded-xl bg-slate-100 dark:bg-[#0b0f19] border border-slate-200 dark:border-white/10 text-slate-800 dark:text-emerald-400 text-xs sm:text-sm font-mono shadow-inner">
+            npm install badrian-icon@latest
+          </code>
+          <code className="px-4 py-2 rounded-xl bg-slate-100 dark:bg-[#0b0f19] border border-slate-200 dark:border-white/10 text-slate-800 dark:text-cyan-300 text-xs sm:text-sm font-mono shadow-inner">
+            {"import { Indonesia } from \"badrian-icon/bendera\""}
+          </code>
         </div>
-    );
+
+        <div className="max-w-xl mx-auto">
+          <PlaceholdersAndVanishInput
+            placeholders={placeholders}
+            onChange={handleChange}
+            onSubmit={onSubmit}
+          />
+        </div>
+      </div>
+
+      {/* Icon Grid Section */}
+      <div className="w-full mb-12">
+        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-3 sm:gap-4">
+          {icons.map((item, index) => {
+            const IconComp = item.icons;
+            return (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.06, y: -3 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                onClick={() => {
+                  onIconOpen();
+                  setIconName([
+                    {
+                      name: item.name,
+                      icons: item.icons,
+                      iconName: item.iconName,
+                    },
+                  ]);
+                }}
+                className="group relative bg-white/80 dark:bg-slate-900/80 hover:bg-slate-50 dark:hover:bg-slate-800/90 border border-slate-200/80 dark:border-white/10 hover:border-emerald-500/50 dark:hover:border-emerald-500/50 rounded-2xl p-4 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-emerald-500/10"
+              >
+                <div className="p-2 rounded-xl bg-slate-100/80 dark:bg-slate-800/60 group-hover:bg-emerald-500/10 text-slate-700 dark:text-slate-200 transition-colors">
+                  <IconComp className="w-10 h-10 object-contain" />
+                </div>
+                <span className="text-[11px] font-mono font-medium text-slate-600 dark:text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-300 truncate w-full text-center mt-2.5 px-1 transition-colors">
+                  {item.name || item.iconName}
+                </span>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Pagination Bar */}
+        <div className="mt-10 flex justify-center items-center">
+          <Pagination
+            totalPages={totalPages}
+            currentPage={page}
+            onPageChange={setPage}
+          />
+        </div>
+      </div>
+
+      {/* Inspector Modal */}
+      <Modlas
+        isOpen={isIconModalOpen}
+        onOpenChange={onIconOpenChange}
+        size="4xl"
+        backdrop="blur"
+      >
+        <ModalContents className="bg-white/95 dark:bg-slate-950/95 border border-slate-200 dark:border-white/15 backdrop-blur-2xl rounded-3xl text-slate-900 dark:text-white shadow-2xl">
+          {() => (
+            <>
+              <ModalHeader className="flex flex-col gap-1 border-b border-slate-200 dark:border-white/10 px-6 py-4">
+                <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+                  Flag Inspector
+                </span>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                  {iconName[0]?.name || iconName[0]?.iconName}
+                </h3>
+              </ModalHeader>
+
+              <ModlasBodys className="p-6">
+                {iconName.map((item, index) => {
+                  const IconComponent = item.icons;
+                  const iconNameText = item.iconName || "Icon";
+                  const iconCode = `<${iconNameText} className="w-8 h-8" />`;
+
+                  const svgString = ReactDOMServer.renderToStaticMarkup(
+                    <IconComponent className="w-8 h-8" />
+                  );
+
+                  return (
+                    <div
+                      key={index}
+                      className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start"
+                    >
+                      {/* Left Column: Icon Preview */}
+                      <div className="lg:col-span-5 flex flex-col items-center justify-center p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-white/10">
+                        <div className="w-44 h-44 sm:w-52 sm:h-52 rounded-2xl bg-white dark:bg-[#0b0f19] border border-slate-200 dark:border-white/10 flex items-center justify-center p-6 shadow-inner relative group">
+                          <IconComponent className="w-28 h-28 object-contain" />
+                        </div>
+                      </div>
+
+                      {/* Right Column: Code Snippets & Copy Buttons */}
+                      <div className="lg:col-span-7 space-y-4">
+                        <div>
+                          <div className="flex justify-between items-center mb-1.5">
+                            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+                              React JSX Component
+                            </span>
+                            <button
+                              onClick={() => handleCopy(iconCode, "jsx")}
+                              className="px-3 py-1 text-xs font-semibold rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 transition-all cursor-pointer"
+                            >
+                              {copiedType === "jsx" ? "✓ Copied!" : "Salin JSX"}
+                            </button>
+                          </div>
+                          <CodeBlock
+                            language="jsx"
+                            filename={`${iconNameText}.jsx`}
+                            highlightLines={[1]}
+                            code={iconCode}
+                          />
+                        </div>
+
+                        <div>
+                          <div className="flex justify-between items-center mb-1.5">
+                            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+                              Pure SVG Code
+                            </span>
+                            <button
+                              onClick={() => handleCopy(svgString, "svg")}
+                              className="px-3 py-1 text-xs font-semibold rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-600 dark:text-cyan-400 border border-cyan-500/30 transition-all cursor-pointer"
+                            >
+                              {copiedType === "svg" ? "✓ Copied!" : "Salin SVG"}
+                            </button>
+                          </div>
+                          <CodeBlock
+                            language="html"
+                            filename={`${iconNameText}.svg`}
+                            highlightLines={[1]}
+                            code={svgString}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </ModlasBodys>
+            </>
+          )}
+        </ModalContents>
+      </Modlas>
+    </div>
+  );
 };
 
 export default Index;
