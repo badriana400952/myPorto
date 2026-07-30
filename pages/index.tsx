@@ -65,7 +65,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden w-full max-w-full">
       <Head>
         {/* Meta Basic */}
         <meta charSet="UTF-8" />

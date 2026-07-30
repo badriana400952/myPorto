@@ -80,7 +80,7 @@ export const ProjectsSection: React.FC = () => {
       description:
         "All-in-one billing & payment mobile application for easy, secure daily financial transactions.",
       image: "./hp.png",
-      category: "mobile",
+      category: "frontend",
       technologies: ["React Native", "TypeScript"],
       link: "https://github.com/badriana400952/Native-SIMS",
     },
@@ -137,7 +137,76 @@ export const ProjectsSection: React.FC = () => {
       category: "fullstack",
       technologies: ["Next js", "TypeScript", "Aceternity UI", "PostgreSQL", "ZenMux AI"],
       link: "https://integrasi-sql-ai-git-main-badrianas-projects.vercel.app/",
-    }
+    },
+    {
+      id: "10",
+      title: "OmniAssist AI",
+      description:
+        "Enterprise AI assistant platform that integrates Large Language Models with WhatsApp to automate customer support. Features include AI chat, knowledge base management, document processing (PDF & DOCX), real-time conversations, authentication, analytics dashboard, and multi-session WhatsApp integration powered by Baileys.",
+      image: "./omniassist.png",
+      category: "fullstack",
+      technologies: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Prisma",
+        "PostgreSQL",
+        "NextAuth",
+        "React Query",
+        "Zustand",
+        "Socket.IO",
+        "Baileys",
+        "Google Gemini AI",
+        "React Hook Form",
+        "Zod",
+        "Axios",
+        "Shadcn UI"
+      ],
+      link: "",
+    },
+    {
+      id: "11",
+      title: "GeneratorHub",
+      description:
+        "A productivity platform that provides a collection of online tools for generating and converting digital assets. Features include QR code generation, barcode generation, image conversion, PDF utilities, invoice and receipt generation, authentication, subscription management, and secure online payments powered by Midtrans.",
+      image: "./generator-hub.png",
+      category: "fullstack",
+      technologies: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Shadcn UI",
+        "Prisma",
+        "PostgreSQL",
+        "NextAuth",
+        "Midtrans",
+        "PDF-Lib",
+        "React PDF",
+        "jsPDF",
+        "html2canvas",
+        "Vercel"
+      ],
+      link: "https://generatorhub-eosin.vercel.app/",
+    },
+    {
+      id: "12",
+      title: "Ubah Text Image",
+      description:
+        "A web-based OCR tool that extracts text from images using Tesseract.js, allowing users to edit, customize, and export the result as a high-quality image. Designed for creating social media posts, quotes, announcements, and editable text-based graphics directly in the browser.",
+      image: "./generate-text-image.png",
+      category: "fullstack",
+      technologies: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Tesseract.js",
+        "HTML-to-Image"
+      ],
+      link: "https://ubah-text-image.vercel.app/",
+    },
   ];
 
   const filteredProjects =
@@ -178,7 +247,6 @@ export const ProjectsSection: React.FC = () => {
           <Tab key="all" title="All Projects" />
           <Tab key="fullstack" title="Full-Stack" />
           <Tab key="frontend" title="Frontend" />
-          <Tab key="mobile" title="Mobile" />
         </Tabs>
       </div>
 
@@ -190,7 +258,7 @@ export const ProjectsSection: React.FC = () => {
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
           >
             <Card className="border border-slate-200/80 dark:border-slate-800/80 overflow-hidden bg-white/70 dark:bg-slate-950/40 hover:border-cyan-500/50 dark:hover:border-cyan-400/50 hover:shadow-[0_15px_30px_rgba(6,182,212,0.12)] dark:hover:shadow-[0_15px_30px_rgba(6,182,212,0.06)] backdrop-blur-md transition-all duration-300 relative group h-full flex flex-col">
-              
+
               {/* Futuristic Holographic Scanline Effect */}
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/8 to-transparent -translate-y-full group-hover:translate-y-full transition-transform duration-[1200ms] pointer-events-none" />
 
@@ -217,7 +285,7 @@ export const ProjectsSection: React.FC = () => {
                     {project.description}
                   </p>
                 </div>
-                
+
                 {/* Tech Tags */}
                 <div className="flex flex-wrap gap-2 pt-2">
                   {project.technologies.map((tech, index) => (

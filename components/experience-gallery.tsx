@@ -31,8 +31,8 @@ const officeExperiences: OfficeExperience[] = [
     id: "1",
     title: "Keluarga Besar TI Ganesha Operation",
     description: "Pertemuan koordinasi kuartalan seluruh jajaran divisi teknologi informasi untuk sinkronisasi target sistem informasi baru.",
-    imageUrl: "./galery/a.jpeg",
-    category: "TI Team",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785381573/go-forto/a_a28hyh.jpg",
+    category: "GO",
     date: "17 Apr 2025",
     temporalHash: "NODE-TI.Q1.025"
   },
@@ -40,8 +40,8 @@ const officeExperiences: OfficeExperience[] = [
     id: "2",
     title: "Apresiasi Task Bulanan",
     description: "Evaluasi bulanan dan pemberian penghargaan atas performa penyelesaian backlog tercepat dalam sistem arsitektur frontend.",
-    imageUrl: "./galery/b.jpeg",
-    category: "Manager",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785381590/go-forto/b_j1rodt.jpg",
+    category: "GO",
     date: "22 Jan 2025",
     temporalHash: "APPR-MGR.01.025"
   },
@@ -49,8 +49,8 @@ const officeExperiences: OfficeExperience[] = [
     id: "3",
     title: "Team Frontend",
     description: "Perayaan peluncuran modul core perpustakaan ikon internal dan integrasi sistem antarmuka berbasis Next.js.",
-    imageUrl: "./galery/c.jpeg",
-    category: "Team Frontend",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785381605/go-forto/c_hazn0t.jpg",
+    category: "GO",
     date: "22 Jan 2025",
     temporalHash: "TEAM-FE.DEPL.025"
   },
@@ -58,8 +58,8 @@ const officeExperiences: OfficeExperience[] = [
     id: "5",
     title: "Evaluasi Mingguan",
     description: "Sinkronisasi mingguan tim pengembang frontend untuk meninjau efisiensi rendering antarmuka pengguna.",
-    imageUrl: "./galery/e.jpeg",
-    category: "Team Frontend",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785381506/go-forto/e_fbiiwg.jpg",
+    category: "GO",
     date: "08 Apr 2025",
     temporalHash: "EVAL-FE.W14.025"
   },
@@ -67,8 +67,8 @@ const officeExperiences: OfficeExperience[] = [
     id: "6",
     title: "Apresiasi Task Bulanan",
     description: "Sesi apresiasi kinerja berkala bagi tim frontend atas integrasi desain responsif premium.",
-    imageUrl: "./galery/f.jpeg",
-    category: "Team Frontend",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785381495/go-forto/f_lzbdfj.jpg",
+    category: "GO",
     date: "08 May 2025",
     temporalHash: "APPR-FE.05.025"
   },
@@ -76,8 +76,8 @@ const officeExperiences: OfficeExperience[] = [
     id: "7",
     title: "Perayaan Hari Kemerdekaan RI",
     description: "Acara kemerdekaan bersama di pusat operasional untuk mempererat solidaritas antar sub-sistem organisasi.",
-    imageUrl: "./galery/g.jpeg",
-    category: "GO Pusat",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785381506/go-forto/g_o2nwml.jpg",
+    category: "GO",
     date: "17 Aug 2024",
     temporalHash: "NAT-IND.AUG.024"
   },
@@ -85,8 +85,8 @@ const officeExperiences: OfficeExperience[] = [
     id: "8",
     title: "Ultah ke-40 Ganesha Operation",
     description: "Dokumentasi peringatan ulang tahun ke-40 instansi dalam menyokong pendidikan terpadu di Indonesia.",
-    imageUrl: "./galery/h.jpeg",
-    category: "Team GO",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785381516/go-forto/h_gtnhqu.jpg",
+    category: "GO",
     date: "02 May 2024",
     temporalHash: "ANNIV-GO.40.024"
   },
@@ -94,8 +94,8 @@ const officeExperiences: OfficeExperience[] = [
     id: "9",
     title: "Apresiasi Task Bulanan",
     description: "Umpan balik bulanan bersama jajaran kepala seksi guna optimalisasi alur kerja tim engineering.",
-    imageUrl: "./galery/i.jpeg",
-    category: "Kepala Seksi",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785381534/go-forto/i_scbhje.jpg",
+    category: "GO",
     date: "08 Feb 2025",
     temporalHash: "APPR-KASI.02.025"
   },
@@ -103,10 +103,109 @@ const officeExperiences: OfficeExperience[] = [
     id: "10",
     title: "Apresiasi Task Bulanan",
     description: "Rapat koordinasi lintas manajerial untuk sinkronisasi prioritas rilis sistem kuartal pertama.",
-    imageUrl: "./galery/j.jpeg",
-    category: "Kasi & Manager",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785381543/go-forto/j_sebbiw.jpg",
+    category: "GO",
     date: "08 Feb 2025",
     temporalHash: "APPR-MGRK.02.025"
+  },
+  {
+    id: "11",
+    title: "Persiapan Meeting Proyek JSM",
+    description: "Momen santai bersama tim sembari menunggu jadwal meeting koordinasi dan penyelarasan alur kerja proyek.",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785382073/jsm-forto/1785381124233_weycrp.jpg",
+    category: "JSM",
+    date: "12 Jun 2025",
+    temporalHash: "JSM-INIT.06.025"
+  },
+  {
+    id: "12",
+    title: "Refleksi & Ideasi Tim",
+    description: "Mengambil jeda sejenak untuk melamun dan mencari inspirasi ide arsitektur antarmuka berlatar pantulan keindahan sunset.",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785382073/jsm-forto/1785381124259_coascu.jpg",
+    category: "JSM",
+    date: "18 Jul 2025",
+    temporalHash: "JSM-DEV.07.025"
+  },
+  {
+    id: "13",
+    title: "Ultah JSM Ke-22 Tahun",
+    description: "Dokumentasi kebersamaan dalam memperingati dan merayakan ulang tahun PT Jaring Synergi Mandiri yang ke-22.",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785382068/jsm-forto/1785381124161_p88usm.jpg",
+    category: "JSM",
+    date: "05 Aug 2025",
+    temporalHash: "JSM-REV.08.025"
+  },
+  {
+    id: "14",
+    title: "Sesi Coffee Break Pra-Meeting",
+    description: "Kegiatan kebersamaan menikmati kopi dan berdiskusi santai bersama tim sebelum memulai agenda meeting teknis.",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785382068/jsm-forto/1785381124209_qzka7n.jpg",
+    category: "JSM",
+    date: "20 Sep 2025",
+    temporalHash: "JSM-PIPE.09.025"
+  },
+  {
+    id: "15",
+    title: "Jumat Berkah JSM",
+    description: "Momen kebersamaan dan berbagi keberkahan di hari Jumat bersama rekan-rekan kerja di kantor JSM.",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785382068/jsm-forto/1785381123924_zufqvk.jpg",
+    category: "JSM",
+    date: "14 Oct 2025",
+    temporalHash: "JSM-RELE.10.025"
+  },
+  {
+    id: "16",
+    title: "Momen Keseharian Kantor JSM",
+    description: "Dokumentasi kebersamaan dan suasana santai di lingkungan kerja kantor sebelum evaluasi kedisiplinan harian.",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785382068/jsm-forto/1785381123957_amrfkz.jpg",
+    category: "JSM",
+    date: "02 Nov 2025",
+    temporalHash: "JSM-IDE.11.025"
+  },
+  {
+    id: "17",
+    title: "Waktu Istirahat Tim",
+    description: "Suasana santai saat jam istirahat kantor untuk melepas penat dan mempererat keakraban antar tim developer.",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785382062/jsm-forto/1785381123886_n8nxsf.jpg",
+    category: "JSM",
+    date: "15 Dec 2025",
+    temporalHash: "JSM-SHARE.12.025"
+  },
+  {
+    id: "18",
+    title: "Pengembangan Proyek ACA Asuransi",
+    description: "Sesi fokus dan analisis mendalam dalam menyelesaikan tantangan logika arsitektur sistem pada proyek ACA Asuransi.",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785382061/jsm-forto/1785381123858_fvyney.jpg",
+    category: "JSM",
+    date: "28 Dec 2025",
+    temporalHash: "JSM-EOY.12.025"
+  },
+  {
+    id: "19",
+    title: "Penyambutan Tahun Baru 2026",
+    description: "Momen perayaan dan pembukaan awal tahun 2026 dengan semangat baru dalam mencapai target-target teknologi mendatang.",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785382064/jsm-forto/1785381124090_wlmpaq.jpg",
+    category: "JSM",
+    date: "10 Jan 2026",
+    temporalHash: "JSM-ROAD.01.026"
+  },
+  {
+    id: "20",
+    title: "Meeting BA Proyek ORIX",
+    description: "Rapat penyelarasan alur sistem dan modul aplikasi bersama Business Analyst untuk suksesnya proyek ORIX.",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785382064/jsm-forto/1785381124129_duwuut.jpg",
+    category: "JSM",
+    date: "04 Feb 2026",
+    temporalHash: "JSM-SYNC.02.026"
+  },
+  {
+    id: "21",
+    title: "Meeting Klien ACA via Zoom",
+    description: "Sesi diskusi online dan koordinasi progres fitur aplikasi bersama pihak klien ACA Asuransi melalui Zoom.",
+    imageUrl: "https://res.cloudinary.com/doykilt63/image/upload/v1785382061/jsm-forto/1785381123827_iniozq.jpg",
+    category: "JSM",
+    date: "20 Mar 2026",
+    temporalHash: "JSM-AWARD.03.026"
   },
 ];
 
@@ -138,7 +237,7 @@ export const ExperienceGallery: React.FC = () => {
         </h2>
         <div className="w-16 h-1 bg-cyan-500 mx-auto rounded-full mb-6" />
         <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
-          Arsip kronik visual dan rekaman jejak kerja sama tim (Era Orbit 2076).
+          Arsip kronik visual dan rekaman jejak kerja sama tim (Era Orbit 2024).
         </p>
       </div>
 

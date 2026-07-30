@@ -78,6 +78,7 @@ export const HeroSection: React.FC = () => {
             src="./badri.png"
             alt="Developer Portrait"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            style={{ objectPosition: "center 5%" }}
           />
         </div>
         {/* Terminal console HUD */}
